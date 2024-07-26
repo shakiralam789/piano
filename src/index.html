@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="./output.css" rel="stylesheet" />
+  <title>Piano</title>
+  <script src="../src/package/core.js"></script>
+  <script src="data.js"></script>
+</head>
+
+<body class="bg-gray-950 flex items-center min-h-screen">
+
+  <div id="page_loader" class="active [&.active]:flex hidden bg-black z-50 uppercase font-thin text-white fixed inset-0 flex justify-center items-center text-2xl">
+    Loading . . .
+  </div>
+
+  <div class="container">
+    <div class="text-center pb-4 text-teal-700 text-xl">
+      Tune is a puzzle of notes
+    </div>
+    <div class="configuire-board pt-10 w-full rounded-t-2xl bg-opacity-95">
+      <div class="p-4 flex items-end justify-between">
+        <div class="flex items-center gap-2">
+          <button id="key-open-modal" data-outsideclick="true" data-name="first" data-role="header" data-group="modal"
+            class="size-8 rounded-full bg-[#474747] shadow-1 text-white flex items-center justify-center">
+            <svg class="size-3.5" fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
+              <path d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32l64 0c17.7 0 32 14.3 32 32l0 224 32 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 512c-17.7 0-32-14.3-32-32s14.3-32 32-32l32 0 0-192-32 0c-17.7 0-32-14.3-32-32z"/>
+            </svg>
+          </button>
+  
+          <button id="reset-setting" class="piano-btn">Default setting</button>
+          <button id="show-hide-notes" class="active group w-[150px] piano-btn">
+             <span class="group-[.active]:inline-block hidden">hide notes name</span>
+             <span class="group-[.active]:hidden">show notes name</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-3">
+          <button data-scale="2" data-role="header" data-name="scale-header-2" data-group="scale"
+            class="scale-change-header group">
+            <span class="scale-change-header-child group-[.active]:-translate-y-3.5">
+              C2
+            </span>
+          </button>
+          <button data-scale="3" data-role="header" data-name="scale-header-3" data-group="scale"
+            class="scale-change-header group active">
+            <span class="scale-change-header-child group-[.active]:-translate-y-3.5">
+              C3
+            </span>
+          </button>
+          <button data-scale="4" data-role="header" data-name="scale-header-4" data-group="scale"
+            class="scale-change-header group">
+            <span class="scale-change-header-child group-[.active]:-translate-y-3.5">
+              C4
+            </span>
+          </button>
+          <button data-scale="5" data-role="header" data-name="scale-header-5" data-group="scale"
+            class="scale-change-header group">
+            <span class="scale-change-header-child group-[.active]:-translate-y-3.5">
+              C5
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="bg-black h-0.5"></div>
+    </div>
+    <div class="piano">
+      <div class="rounded-b-2xl w-full overflow-x-scroll customScroll-none">
+        <div id="allCord" class="h-[250px] flex gap-0.5"></div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="px-4 has-[.modal.active]:pointer-events-auto has-[.modal.active]:opacity-100 pointer-events-none flex opacity-0 duration-500 fixed top-0 left-0 z-30 w-full bg-black/80 h-screen overflow-y-auto items-center justify-center">
+    <form autocomplete="off" id="customize-key-modal" data-name="first" data-role="content" data-group="modal"
+      class="modal max-h-[90vh] overflow-y-auto relative hidden [&.active]:block w-[900px] rounded-[18px] bg-gray-950 border border-slate-700 text-white">
+
+      <div class="sticky top-0 bg-gray-950">
+        <button data-name="first" data-role="cancel" data-group="modal"
+          class="absolute top-1.5 left-1.5 size-6 flex text-xs justify-center items-center bg-red-600 rounded-full text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>          
+        </button>
+        <h2 class="text-xl 2xl:text-2xl text-center py-4">Customize key</h2>
+      </div>
+
+      <div id="form-field" class="px-4 pb-1 text-sm space-y-6 2xl:space-y-8"></div>
+      <div class="px-4">
+        <p class="repeated-error-show text-sm text-red-500 empty-hidden"></p>
+      </div>
+      <div class="px-4 pt-6 2xl:pt-8 pb-4 2xl:pb-6 bg-gray-950 flex justify-end gap-1">
+        <button type="button" id="reset-key-btn" class="key-btn-danger">Reset</button>
+        <button type="button" id="submit-key-btn" class="key-btn-primary">submit</button>
+      </div>
+    </form>
+    <div>
+
+    </div>
+  </div>
+  <script src="needfullFunc.js"></script>
+  <script src="./buildFormField.js"></script>
+  <script src="./anyToggle.js"></script>
+  <script src="./piano.js"></script>
+  <script>
+    let showHideNotes = document.getElementById('show-hide-notes')
+    let piano = document.querySelector('.piano')
+    showHideNotes.addEventListener('click',()=>{
+      showHideNotes.classList.toggle('active')
+      piano.classList.toggle('hide-note')
+    })
+  </script>
+</body>
+
+</html>
