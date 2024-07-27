@@ -12,8 +12,13 @@
 
 <body class="bg-gray-950 flex items-center min-h-screen">
 
-  <div id="page_loader" class="active [&.active]:flex hidden bg-black z-50 uppercase font-thin text-white fixed inset-0 flex justify-center items-center text-2xl">
-    Loading . . .
+  <div id="page_loader" class="active [&.active]:flex hidden bg-black z-50 uppercase font-thin text-white fixed inset-0 justify-center items-center text-2xl">
+    <div>
+     <span> Preparing . . .</span>
+      <div class="w-[153px] border h-2 mt-2 rounded-full overflow-hidden">
+        <div id="loader-bar" class="duration-100 bg-white h-full" style="width: 50%;"></div>
+      </div>
+    </div>
   </div>
 
   <div class="container">
@@ -35,6 +40,11 @@
              <span class="group-[.active]:inline-block hidden">hide notes name</span>
              <span class="group-[.active]:hidden">show notes name</span>
           </button>
+
+          <div class="flex items-center gap-2">
+            <label class="text-white text-sm" for="volumeControl">Volume: </label>
+            <input autocomplete="off" type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.3">
+          </div>
         </div>
         <div class="flex items-center gap-3">
           <button data-scale="2" data-role="header" data-name="scale-header-2" data-group="scale"
