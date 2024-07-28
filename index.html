@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="./output.css" rel="stylesheet" />
+  <link href="./src/output.css" rel="stylesheet" />
   <title>Piano</title>
-  <script src="../src/package/core.js"></script>
-  <script src="data.js"></script>
+  <script src="./src//package/core.js"></script>
+  <script src="./src/data.js"></script>
 </head>
 
 <body class="bg-gray-950 flex items-center min-h-screen">
@@ -16,7 +16,7 @@
     <div>
      <span> Preparing . . .</span>
       <div class="w-[153px] border h-2 mt-2 rounded-full overflow-hidden">
-        <div id="loader-bar" class="duration-100 bg-white h-full" style="width: 50%;"></div>
+        <div id="loader-bar" class="duration-100 bg-white h-full"></div>
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@
 
           <div class="flex items-center gap-2">
             <label class="text-white text-sm" for="volumeControl">Volume: </label>
-            <input autocomplete="off" type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.3">
+            <input autocomplete="off" type="range" id="volumeControl" min="0" max="0.5" step="0.01" value="0.3">
           </div>
         </div>
         <div class="flex items-center gap-3">
@@ -110,10 +110,10 @@
 
     </div>
   </div>
-  <script src="needfullFunc.js"></script>
-  <script src="./buildFormField.js"></script>
-  <script src="./anyToggle.js"></script>
-  <script src="./piano.js"></script>
+  <script src="./src/needfullFunc.js"></script>
+  <script src="./src/buildFormField.js"></script>
+  <script src="./src/anyToggle.js"></script>
+  <script src="./src/piano.js"></script>
   <script>
     let showHideNotes = document.getElementById('show-hide-notes')
     let piano = document.querySelector('.piano')

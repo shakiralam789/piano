@@ -32,7 +32,7 @@ window.addEventListener("load", () => {
 
         try {
           let response = await fetch(
-            `./sounds/c${i + 1}/${Object.keys(nt)[0].replace(
+            `./src/sounds/c${i + 1}/${Object.keys(nt)[0].replace(
               "_sharp",
               "s"
             )}.wav`
