@@ -1,6 +1,7 @@
 // create note
 
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
+  
   const activeKeys = new Set();
 
   const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -21,7 +22,6 @@ window.addEventListener("load", () => {
   });
 
   let count = 0;
-
 
   async function preloadAudio() {
     for (let i = 0; i < pianoData.length; i++) {
@@ -248,6 +248,21 @@ window.addEventListener("load", () => {
     }
 
   });
+
+   // Create and/or resume AudioContext on user interaction
+   const initializeAudioContext = () => {
+    if (!audioContext) {
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      gainNode = audioContext.createGain();
+      gainNode.gain.value = currentVolume;
+      gainNode.connect(audioContext.destination);
+    } else if (audioContext.state === 'suspended') {
+      audioContext.resume();
+    }
+  };
+
+  document.addEventListener('keydown', initializeAudioContext);
+  document.addEventListener('mousedown', initializeAudioContext);
 
   function makeTune(e, swt, audio) {
     if (e) {
