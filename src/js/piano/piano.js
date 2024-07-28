@@ -1,6 +1,11 @@
 // create note
 
 window.addEventListener("DOMContentLoaded", () => {
+
+  let piano = document.querySelector('.piano')
+
+let isAutoPlaying = false;
+
   
   const activeKeys = new Set();
 
@@ -27,26 +32,21 @@ window.addEventListener("DOMContentLoaded", () => {
     for (let i = 0; i < pianoData.length; i++) {
       const el = pianoData[i]["cord_" + (i + 1)];
       for (let j = 0; j < el.length; j++) {
-        
         let nt = el[j];
+        const note = Object.keys(nt)[0];
+        const soundFile = `./src/sounds/c${i + 1}/${note.replace('_sharp', 's')}.wav`;
 
         try {
-          let response = await fetch(
-            `./src/sounds/c${i + 1}/${Object.keys(nt)[0].replace(
-              "_sharp",
-              "s"
-            )}.wav`
-          );
+          let response = await fetch(soundFile);
+          if (!response.ok) {
+            throw new Error(`Network response was not ok for ${soundFile}`);
+          }
           let arrayBuffer = await response.arrayBuffer();
-
-          nt[Object.keys(nt)[0]].sound = await audioContext.decodeAudioData(
-            arrayBuffer
-          );
-
-          count++
-
-          loaderVar.style.width = `${(count / (pianoData.length*12)) * 100}%`;
-          
+          nt[note].sound = await audioContext.decodeAudioData(arrayBuffer);
+          count++;
+          if (loaderVar) {
+            loaderVar.style.width = `${(count / (pianoData.length * 12)) * 100}%`;
+          }
         } catch (error) {
           console.error("Error loading sound:", error);
         }
@@ -62,7 +62,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 1
       //   ra
       let noteDiv1 = document.createElement("div");
-      noteDiv1.className = `switch note`;
+      noteDiv1.className = `switch note c${i + 1}_${note1}`;
       noteDiv1.setAttribute("data-key", data["cord_" + (i + 1)][0][note1].key);
       noteDiv1.innerHTML = `<span class="notes-name">${note1.replace(
         "_sharp",
@@ -74,7 +74,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       //   soft ga
       let semiNote1 = document.createElement("div");
-      semiNote1.className = `switch semi-note-left`;
+      semiNote1.className = `switch semi-note-left c${i + 1}_${note2}`;
       semiNote1.setAttribute("data-key", data["cord_" + (i + 1)][1][note2].key);
       semiNote1.innerHTML = `<span class="notes-name">${note2.replace(
         "_sharp",
@@ -91,7 +91,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 2
       //   ga
       let noteDiv2 = document.createElement("div");
-      noteDiv2.className = `switch note`;
+      noteDiv2.className = `switch note c${i + 1}_${note3}`;
       noteDiv2.setAttribute("data-key", data["cord_" + (i + 1)][2][note3].key);
       noteDiv2.innerHTML = `<span class="notes-name">${note3.replace(
         "_sharp",
@@ -103,7 +103,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       //   ma
       let semiNote2 = document.createElement("div");
-      semiNote2.className = `switch semi-note-right`;
+      semiNote2.className = `switch semi-note-right c${i + 1}_${note4}`;
       semiNote2.setAttribute("data-key", data["cord_" + (i + 1)][3][note4].key);
       semiNote2.innerHTML = `<span class="notes-name">${note4.replace(
         "_sharp",
@@ -120,7 +120,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 3
       //   sharp ma
       let noteDiv3 = document.createElement("div");
-      noteDiv3.className = `switch note`;
+      noteDiv3.className = `switch note c${i + 1}_${note5}`;
       noteDiv3.setAttribute("data-key", data["cord_" + (i + 1)][4][note5].key);
       noteDiv3.innerHTML = `<span class="notes-name">${note5.replace(
         "_sharp",
@@ -135,7 +135,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 4
       //   pa
       let noteDiv4 = document.createElement("div");
-      noteDiv4.className = `switch note`;
+      noteDiv4.className = `switch note c${i + 1}_${note6}`;
       noteDiv4.setAttribute("data-key", data["cord_" + (i + 1)][5][note6].key);
       noteDiv4.innerHTML = `<span class="notes-name">${note6.replace(
         "_sharp",
@@ -147,7 +147,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       //   soft dha
       let semiNote3 = document.createElement("div");
-      semiNote3.className = `switch semi-note-left`;
+      semiNote3.className = `switch semi-note-left c${i + 1}_${note7}`;
       semiNote3.setAttribute("data-key", data["cord_" + (i + 1)][6][note7].key);
       semiNote3.innerHTML = `<span class="notes-name">${note7.replace(
         "_sharp",
@@ -164,7 +164,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 5
       //   dha
       let noteDiv5 = document.createElement("div");
-      noteDiv5.className = `switch note`;
+      noteDiv5.className = `switch note c${i + 1}_${note8}`;
       noteDiv5.setAttribute("data-key", data["cord_" + (i + 1)][7][note8].key);
       noteDiv5.innerHTML = `<span class="notes-name">${note8.replace(
         "_sharp",
@@ -176,7 +176,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       //   soft ni
       let semiNote4 = document.createElement("div");
-      semiNote4.className = `switch semi-note-middle`;
+      semiNote4.className = `switch semi-note-middle c${i + 1}_${note9}`;
       semiNote4.setAttribute("data-key", data["cord_" + (i + 1)][8][note9].key);
       semiNote4.innerHTML = `<span class="notes-name">${note9.replace(
         "_sharp",
@@ -193,7 +193,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 6
       //   ni
       let noteDiv6 = document.createElement("div");
-      noteDiv6.className = `switch note`;
+      noteDiv6.className = `switch note c${i + 1}_${note10}`;
       noteDiv6.setAttribute("data-key", data["cord_" + (i + 1)][9][note10].key);
       noteDiv6.innerHTML = `<span class="notes-name">${note10.replace(
         "_sharp",
@@ -205,7 +205,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       //   sa
       let semiNote5 = document.createElement("div");
-      semiNote5.className = `switch semi-note-right`;
+      semiNote5.className = `switch semi-note-right c${i + 1}_${note11}`;
       semiNote5.setAttribute(
         "data-key",
         data["cord_" + (i + 1)][10][note11].key
@@ -225,7 +225,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 7
       //   soft ra
       let noteDiv7 = document.createElement("div");
-      noteDiv7.className = `switch note`;
+      noteDiv7.className = `switch note c${i + 1}_${note12}`;
       noteDiv7.setAttribute(
         "data-key",
         data["cord_" + (i + 1)][11][note12].key
@@ -265,6 +265,7 @@ window.addEventListener("DOMContentLoaded", () => {
   document.addEventListener('mousedown', initializeAudioContext);
 
   function makeTune(e, swt, audio) {
+    
     if (e) {
       e.stopPropagation();
     }
@@ -278,9 +279,7 @@ window.addEventListener("DOMContentLoaded", () => {
       source.start(0);
     }
 
-    swt.onmouseup = function () {
-      initialize(swt);
-    };
+    swt.onmouseup = () => initialize(swt);
   }
 
   function initialize(activeSwitch) {
@@ -309,8 +308,8 @@ window.addEventListener("DOMContentLoaded", () => {
   let customizeKeyModal = document.getElementById("customize-key-modal");
 
   window.addEventListener("keydown", (e) => {
-    if (!customizeKeyModal.classList.contains("active")) {
-      if (activeKeys.has(e.key)) return; // Prevent repeated keydown events
+    if (!isAutoPlaying && !customizeKeyModal.classList.contains("active")) {
+      if (activeKeys.has(e.key)) return;
       activeKeys.add(e.key);
       e.preventDefault();
 
@@ -405,4 +404,76 @@ window.addEventListener("DOMContentLoaded", () => {
   function handleKeyFlowError(error) {
     location.reload();
   }
+
+  // auto playing
+
+let autoPlaySection = document.getElementById('auto-play-section')
+let chooseSong = document.getElementById('choose-song');
+let autoPlayBtn = document.getElementById('auto-play-btn');
+let autoPlayCancelBtn = document.getElementById('auto-play-cancel-btn');
+
+let chosenSong;
+let timeouts = [];
+
+chooseSong.addEventListener('change', (e) => {
+    chosenSong = songs[chooseSong.value];
 });
+
+let noteDiv;
+
+autoPlayBtn.addEventListener('click', () => {
+    if (chosenSong && !isAutoPlaying) {
+
+      allCord.classList.add('pointer-events-none')
+
+        autoPlaySection.classList.add('playing')
+        isAutoPlaying = true;
+
+        let time = 0;
+
+        chosenSong.notes.forEach(el => {
+            const timeout =  setTimeout(() => {
+                if (noteDiv) {
+                    noteDiv.onmouseup();
+                }
+
+                noteDiv = document.querySelector(`.${el.octave}`);
+                noteDiv.onmousedown();
+            }, time);
+
+            timeouts.push(timeout);
+            time += el.duration;  // Accumulate time
+        });
+
+        const finalTimeout = setTimeout(() => {
+            if (noteDiv) {
+                noteDiv.onmouseup();
+            }
+
+            autoPlaySection.classList.remove('playing');
+            allCord.classList.remove('pointer-events-none')
+            isAutoPlaying = false;
+        }, time);
+
+        timeouts.push(finalTimeout)
+    }
+});
+
+autoPlayCancelBtn.addEventListener('click', () => {
+    autoPlaySection.classList.remove('playing');
+    allCord.classList.remove('pointer-events-none')
+    isAutoPlaying = false;
+
+    // Clear all timeouts
+    timeouts.forEach(timeout => clearTimeout(timeout));
+    timeouts = [];
+
+    // Ensure the current note is stopped
+    if (noteDiv) {
+        noteDiv.onmouseup();
+    }
+});
+
+});
+
+
