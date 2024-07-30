@@ -1,12 +1,10 @@
 // create note
 
 window.addEventListener("DOMContentLoaded", () => {
+  let piano = document.querySelector(".piano");
 
-  let piano = document.querySelector('.piano')
+  let isAutoPlaying = false;
 
-let isAutoPlaying = false;
-
-  
   const activeKeys = new Set();
 
   const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -34,7 +32,10 @@ let isAutoPlaying = false;
       for (let j = 0; j < el.length; j++) {
         let nt = el[j];
         const note = Object.keys(nt)[0];
-        const soundFile = `./src/sounds/c${i + 1}/${note.replace('_sharp', 's')}.wav`;
+        const soundFile = `./src/sounds/c${i + 1}/${note.replace(
+          "_sharp",
+          "s"
+        )}.wav`;
 
         try {
           let response = await fetch(soundFile);
@@ -43,9 +44,12 @@ let isAutoPlaying = false;
           }
           let arrayBuffer = await response.arrayBuffer();
           nt[note].sound = await audioContext.decodeAudioData(arrayBuffer);
+
           count++;
           if (loaderVar) {
-            loaderVar.style.width = `${(count / (pianoData.length * 12)) * 100}%`;
+            loaderVar.style.width = `${
+              (count / (pianoData.length * 12)) * 100
+            }%`;
           }
         } catch (error) {
           console.error("Error loading sound:", error);
@@ -243,29 +247,27 @@ let isAutoPlaying = false;
       allCord.append(cord);
     });
 
-    if(page_loader){
+    if (page_loader) {
       page_loader.remove();
     }
-
   });
 
-   // Create and/or resume AudioContext on user interaction
-   const initializeAudioContext = () => {
+  // Create and/or resume AudioContext on user interaction
+  const initializeAudioContext = () => {
     if (!audioContext) {
       audioContext = new (window.AudioContext || window.webkitAudioContext)();
       gainNode = audioContext.createGain();
       gainNode.gain.value = currentVolume;
       gainNode.connect(audioContext.destination);
-    } else if (audioContext.state === 'suspended') {
+    } else if (audioContext.state === "suspended") {
       audioContext.resume();
     }
   };
 
-  document.addEventListener('keydown', initializeAudioContext);
-  document.addEventListener('mousedown', initializeAudioContext);
+  document.addEventListener("keydown", initializeAudioContext);
+  document.addEventListener("mousedown", initializeAudioContext);
 
   function makeTune(e, swt, audio) {
-    
     if (e) {
       e.stopPropagation();
     }
@@ -407,73 +409,84 @@ let isAutoPlaying = false;
 
   // auto playing
 
-let autoPlaySection = document.getElementById('auto-play-section')
-let chooseSong = document.getElementById('choose-song');
-let autoPlayBtn = document.getElementById('auto-play-btn');
-let autoPlayCancelBtn = document.getElementById('auto-play-cancel-btn');
+  let autoPlaySection = document.getElementById("auto-play-section");
+  let chooseSong = document.getElementById("choose-song");
+  let autoPlayBtn = document.getElementById("auto-play-btn");
+  let autoPlayCancelBtn = document.getElementById("auto-play-cancel-btn");
 
-let chosenSong;
-let timeouts = [];
+  let chosenSong;
+  let timeouts = [];
 
-chooseSong.addEventListener('change', (e) => {
-    chosenSong = songs[chooseSong.value];
-});
+  let noteDiv;
+  let songTimeline = document.getElementById("song-timeline");
 
-let noteDiv;
+  autoPlayBtn.addEventListener("click", () => {
+    chosenSong = allSongs()[chooseSong.value];
 
-autoPlayBtn.addEventListener('click', () => {
     if (chosenSong && !isAutoPlaying) {
+      allCord.classList.add("pointer-events-none");
 
-      allCord.classList.add('pointer-events-none')
+      autoPlaySection.classList.add("playing");
+      isAutoPlaying = true;
 
-        autoPlaySection.classList.add('playing')
-        isAutoPlaying = true;
+      let time = 0;
 
-        let time = 0;
+      chosenSong.notes.forEach((el) => {
+        const timeout = setTimeout(() => {
+          if (noteDiv) {
+            noteDiv.onmouseup();
+          }
 
-        chosenSong.notes.forEach(el => {
-            const timeout =  setTimeout(() => {
-                if (noteDiv) {
-                    noteDiv.onmouseup();
-                }
-
-                noteDiv = document.querySelector(`.${el.octave}`);
-                noteDiv.onmousedown();
-            }, time);
-
-            timeouts.push(timeout);
-            time += el.duration;  // Accumulate time
-        });
-
-        const finalTimeout = setTimeout(() => {
-            if (noteDiv) {
-                noteDiv.onmouseup();
-            }
-
-            autoPlaySection.classList.remove('playing');
-            allCord.classList.remove('pointer-events-none')
-            isAutoPlaying = false;
+          noteDiv = document.querySelector(`.${el.octave}`);
+          noteDiv.onmousedown();
         }, time);
 
-        timeouts.push(finalTimeout)
-    }
-});
+        timeouts.push(timeout);
+        time += el.duration; // Accumulate time
+      });
 
-autoPlayCancelBtn.addEventListener('click', () => {
-    autoPlaySection.classList.remove('playing');
-    allCord.classList.remove('pointer-events-none')
+      const finalTimeout = setTimeout(() => {
+        if (noteDiv) {
+          noteDiv.onmouseup();
+        }
+
+        autoPlaySection.classList.remove("playing");
+        allCord.classList.remove("pointer-events-none");
+        isAutoPlaying = false;
+
+        songTimeline.style.transition = null;
+        songTimeline.style.width = "0%";
+      }, time);
+
+      timeouts.push(finalTimeout);
+    }
+
+    let timeArray = chosenSong.notes.map((el) => el.duration);
+    let sum = 0;
+
+    timeArray.forEach((el) => {
+      sum += el;
+    });
+
+    songTimeline.style.width = "100%";
+    songTimeline.style.transition = `all ${sum}ms linear`;
+  });
+
+  autoPlayCancelBtn.addEventListener("click", () => {
+    songTimeline.style.transition = null;
+    songTimeline.style.width = "0%";
+
+    autoPlaySection.classList.remove("playing");
+    allCord.classList.remove("pointer-events-none");
     isAutoPlaying = false;
 
     // Clear all timeouts
-    timeouts.forEach(timeout => clearTimeout(timeout));
+    timeouts.forEach((timeout) => clearTimeout(timeout));
     timeouts = [];
 
     // Ensure the current note is stopped
     if (noteDiv) {
-        noteDiv.onmouseup();
+      noteDiv.onmouseup();
     }
+  });
 });
-
-});
-
-
