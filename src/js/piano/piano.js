@@ -1,7 +1,12 @@
 // create note
-
 window.addEventListener("DOMContentLoaded", () => {
-  let piano = document.querySelector(".piano");
+  let baseSpeedValue = 300;
+  let baseCordValue = 3;
+  let selectSpeedCord = document.querySelector("#select-speed-cord");
+  let controlSpeed = document.getElementById("control-speed");
+
+  let baseCord = baseCordValue;
+  let baseSpeed = baseSpeedValue;
 
   let isAutoPlaying = false;
 
@@ -408,7 +413,6 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // auto playing
-
   let autoPlaySection = document.getElementById("auto-play-section");
   let chooseSong = document.getElementById("choose-song");
   let autoPlayBtn = document.getElementById("auto-play-btn");
@@ -421,8 +425,7 @@ window.addEventListener("DOMContentLoaded", () => {
   let songTimeline = document.getElementById("song-timeline");
 
   autoPlayBtn.addEventListener("click", () => {
-    chosenSong = allSongs()[chooseSong.value];
-
+    chosenSong = allSongs(baseSpeed, baseCord)[chooseSong.value];
     if (chosenSong && !isAutoPlaying) {
       allCord.classList.add("pointer-events-none");
 
@@ -461,15 +464,17 @@ window.addEventListener("DOMContentLoaded", () => {
       timeouts.push(finalTimeout);
     }
 
-    let timeArray = chosenSong.notes.map((el) => el.duration);
-    let sum = 0;
+    if (chosenSong) {
+      let timeArray = chosenSong.notes.map((el) => el.duration);
+      let sum = 0;
 
-    timeArray.forEach((el) => {
-      sum += el;
-    });
+      timeArray.forEach((el) => {
+        sum += el;
+      });
 
-    songTimeline.style.width = "100%";
-    songTimeline.style.transition = `all ${sum}ms linear`;
+      songTimeline.style.width = "100%";
+      songTimeline.style.transition = `all ${sum}ms linear`;
+    }
   });
 
   autoPlayCancelBtn.addEventListener("click", () => {
@@ -488,5 +493,71 @@ window.addEventListener("DOMContentLoaded", () => {
     if (noteDiv) {
       noteDiv.onmouseup();
     }
+  });
+
+  let selectCord = document.querySelector("#select-cord");
+
+  chooseSongSelect.addEventListener("change", (e) => {
+    let selectedOption;
+    let options = "<option>Select cord </option>";
+
+    controlSpeed.value = 15;
+    selectCord
+    ?.querySelector("select")
+    .children[0].setAttribute("selected", "");
+
+    baseCord = baseCordValue;
+    baseSpeed = baseSpeedValue;
+
+    if (chooseSongSelect.value) {
+      selectCord.classList.add("active");
+      selectSpeedCord.classList.add("active");
+      selectedOption =
+        chooseSongSelect.children[chooseSongSelect.options.selectedIndex];
+      if (selectedOption) {
+        let loopStart = +selectedOption.dataset.min;
+        let loopEnd = +selectedOption.dataset.max;
+        for (let i = loopStart; i < loopEnd + 1; i++) {
+          options += `<option value="${i}">${i}</option>`;
+        }
+      }
+    } else {
+      selectCord.classList.remove("active");
+      selectSpeedCord.classList.remove("active");
+    }
+
+    selectCord.querySelector("select").innerHTML = options;
+
+    if (selectedOption && selectedOption.dataset["cord"]) {
+      baseCord = +selectedOption.dataset["cord"];
+      if (
+        selectCord &&
+        selectCord.querySelector("select").children &&
+        baseCord
+      ) {
+        let opts = selectCord.querySelector("select").children;
+
+        let selectedOption = [...opts].filter((el) => el.value == baseCord)[0];
+
+        if (selectedOption) {
+          selectedOption.setAttribute("selected", "");
+        }
+      }
+    }
+
+    if (selectedOption && selectedOption.dataset["speed"]) {
+      baseSpeed = +selectedOption.dataset["speed"];
+      controlSpeed.value = Math.round((baseSpeedValue * (+controlSpeed.max / 2)) / baseSpeed) ;
+    }
+  });
+
+  selectCord.addEventListener("change", (e) => {
+    baseCord = +e.target.value;
+  });
+
+  controlSpeed.addEventListener("change", () => {
+    baseSpeed = Math.floor(
+      (baseSpeedValue * (+controlSpeed.max / 2)) / +controlSpeed.value
+    );
   });
 });

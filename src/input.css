@@ -28,6 +28,10 @@
    .piano-btn{
     @apply text-center px-4 py-1.5 capitalize rounded-md bg-[#474747] text-sm text-gray-200 duration-300 shadow-1
    }
+
+   .piano-input{
+    @apply px-4 py-1.5 capitalize rounded-md bg-[#474747] text-sm text-gray-200 duration-300 shadow-1
+   }
 }
 
 .piano{
@@ -188,3 +192,31 @@
         opacity: 0.5;
     }
 }
+
+.slider {
+    @apply rounded-full;
+    -webkit-appearance: none;
+    width: 70%;
+    height: 10px;
+    background: #5f5f5f;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+  
+  .slider:hover {
+    opacity: 1;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    @apply bg-teal-400 size-[16px] rounded-full;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  
+  .slider::-moz-range-thumb {
+    @apply bg-teal-400 size-[16px] rounded-full;
+    cursor: pointer;
+  }
