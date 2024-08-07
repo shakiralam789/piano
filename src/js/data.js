@@ -98,7 +98,6 @@ let pianoData = [
           key: "",
         },
       },
-
       {
         [note2]: {
           key: "",
@@ -116,42 +115,42 @@ let pianoData = [
       },
       {
         [note5]: {
-          key: "a",
+          key: "",
         },
       },
       {
         [note6]: {
-          key: "q",
+          key: "",
         },
       },
       {
         [note7]: {
-          key: "w",
+          key: "",
         },
       },
       {
         [note8]: {
-          key: "s",
+          key: "",
         },
       },
       {
         [note9]: {
-          key: "e",
+          key: "",
         },
       },
       {
         [note10]: {
-          key: "d",
+          key: "",
         },
       },
       {
         [note11]: {
-          key: "r",
+          key: "",
         },
       },
       {
         [note12]: {
-          key: "f",
+          key: "",
         },
       },
     ],
@@ -160,62 +159,63 @@ let pianoData = [
     cord_3: [
       {
         [note1]: {
-          key: "g",
+          key: "q",
         },
       },
+
       {
         [note2]: {
-          key: "t",
+          key: "2",
         },
       },
       {
         [note3]: {
-          key: "h",
+          key: "w",
         },
       },
       {
         [note4]: {
-          key: "y",
+          key: "3",
         },
       },
       {
         [note5]: {
-          key: "j",
+          key: "e",
         },
       },
       {
         [note6]: {
-          key: "u",
+          key: "r",
         },
       },
       {
         [note7]: {
-          key: "i",
+          key: "5",
         },
       },
       {
         [note8]: {
-          key: "k",
+          key: "t",
         },
       },
       {
         [note9]: {
-          key: "o",
+          key: "6",
         },
       },
       {
         [note10]: {
-          key: "l",
+          key: "y",
         },
       },
       {
         [note11]: {
-          key: "p",
+          key: "7",
         },
       },
       {
         [note12]: {
-          key: ";",
+          key: "u",
         },
       },
     ],
@@ -224,62 +224,62 @@ let pianoData = [
     cord_4: [
       {
         [note1]: {
-          key: "'",
+          key: "i",
         },
       },
       {
         [note2]: {
-          key: "[",
+          key: "9",
         },
       },
       {
         [note3]: {
-          key: "Enter",
+          key: "o",
         },
       },
       {
         [note4]: {
-          key: "]",
+          key: "0",
         },
       },
       {
         [note5]: {
-          key: "",
+          key: "p",
         },
       },
       {
         [note6]: {
-          key: "",
+          key: "z",
         },
       },
       {
         [note7]: {
-          key: "",
+          key: "s",
         },
       },
       {
         [note8]: {
-          key: "",
+          key: "x",
         },
       },
       {
         [note9]: {
-          key: "",
+          key: "d",
         },
       },
       {
         [note10]: {
-          key: "",
+          key: "c",
         },
       },
       {
         [note11]: {
-          key: "",
+          key: "f",
         },
       },
       {
         [note12]: {
-          key: "",
+          key: "v",
         },
       },
     ],
@@ -288,57 +288,57 @@ let pianoData = [
     cord_5: [
       {
         [note1]: {
-          key: "",
+          key: "b",
         },
       },
       {
         [note2]: {
-          key: "",
+          key: "h",
         },
       },
       {
         [note3]: {
-          key: "",
+          key: "n",
         },
       },
       {
         [note4]: {
-          key: "",
+          key: "j",
         },
       },
       {
         [note5]: {
-          key: "",
+          key: "m",
         },
       },
       {
         [note6]: {
-          key: "",
+          key: ",",
         },
       },
       {
         [note7]: {
-          key: "",
+          key: "l",
         },
       },
       {
         [note8]: {
-          key: "",
+          key: ".",
         },
       },
       {
         [note9]: {
-          key: "",
+          key: ";",
         },
       },
       {
         [note10]: {
-          key: "",
+          key: "/",
         },
       },
       {
         [note11]: {
-          key: "",
+          key: "'",
         },
       },
       {
