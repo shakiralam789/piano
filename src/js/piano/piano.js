@@ -73,10 +73,13 @@ window.addEventListener("DOMContentLoaded", () => {
       let noteDiv1 = document.createElement("div");
       noteDiv1.className = `switch note c${i + 1}_${note1}`;
       noteDiv1.setAttribute("data-key", data["cord_" + (i + 1)][0][note1].key);
-      noteDiv1.innerHTML = `<span class="notes-name">${note1.replace(
+      noteDiv1.innerHTML = `
+      <span class="notes-name">${note1.replace(
         "_sharp",
         "#"
-      )}${i + 1}</span>`;
+      )}${i + 1}</span>
+      <span class="keys-name">${data["cord_" + (i + 1)][0][note1].key}</span>
+      `;
 
       noteDiv1.onmousedown = (e) =>
         makeTune(e, noteDiv1, data["cord_" + (i + 1)][0][note1].sound);
@@ -88,7 +91,9 @@ window.addEventListener("DOMContentLoaded", () => {
       semiNote1.innerHTML = `<span class="notes-name">${note2.replace(
         "_sharp",
         "#"
-      )}</span>`;
+      )}</span>
+      <span class="keys-name">${data["cord_" + (i + 1)][1][note2].key}</span>
+      `;
 
       semiNote1.onmousedown = (e) =>
         makeTune(e, semiNote1, data["cord_" + (i + 1)][1][note2].sound);
@@ -105,7 +110,9 @@ window.addEventListener("DOMContentLoaded", () => {
       noteDiv2.innerHTML = `<span class="notes-name">${note3.replace(
         "_sharp",
         "#"
-      )}</span>`;
+      )}</span>
+      <span class="keys-name">${data["cord_" + (i + 1)][2][note3].key}</span>
+      `;
 
       noteDiv2.onmousedown = (e) =>
         makeTune(e, noteDiv2, data["cord_" + (i + 1)][2][note3].sound);
@@ -117,7 +124,9 @@ window.addEventListener("DOMContentLoaded", () => {
       semiNote2.innerHTML = `<span class="notes-name">${note4.replace(
         "_sharp",
         "#"
-      )}</span>`;
+      )}</span>
+      <span class="keys-name">${data["cord_" + (i + 1)][3][note4].key}</span>
+      `;
 
       semiNote2.onmousedown = (e) =>
         makeTune(e, semiNote2, data["cord_" + (i + 1)][3][note4].sound);
@@ -134,7 +143,9 @@ window.addEventListener("DOMContentLoaded", () => {
       noteDiv3.innerHTML = `<span class="notes-name">${note5.replace(
         "_sharp",
         "#"
-      )}</span>`;
+      )}</span>
+      <span class="keys-name">${data["cord_" + (i + 1)][4][note5].key}</span>
+      `;
 
       noteDiv3.onmousedown = (e) =>
         makeTune(e, noteDiv3, data["cord_" + (i + 1)][4][note5].sound);
@@ -149,7 +160,9 @@ window.addEventListener("DOMContentLoaded", () => {
       noteDiv4.innerHTML = `<span class="notes-name">${note6.replace(
         "_sharp",
         "#"
-      )}</span>`;
+      )}</span>
+      <span class="keys-name">${data["cord_" + (i + 1)][5][note6].key}</span>
+      `;
 
       noteDiv4.onmousedown = (e) =>
         makeTune(e, noteDiv4, data["cord_" + (i + 1)][5][note6].sound);
@@ -161,7 +174,9 @@ window.addEventListener("DOMContentLoaded", () => {
       semiNote3.innerHTML = `<span class="notes-name">${note7.replace(
         "_sharp",
         "#"
-      )}</span>`;
+      )}</span>
+      <span class="keys-name">${data["cord_" + (i + 1)][6][note7].key}</span>
+      `;
 
       semiNote3.onmousedown = (e) =>
         makeTune(e, semiNote3, data["cord_" + (i + 1)][6][note7].sound);
@@ -178,7 +193,9 @@ window.addEventListener("DOMContentLoaded", () => {
       noteDiv5.innerHTML = `<span class="notes-name">${note8.replace(
         "_sharp",
         "#"
-      )}</span>`;
+      )}</span>
+      <span class="keys-name">${data["cord_" + (i + 1)][7][note8].key}</span>
+      `;
 
       noteDiv5.onmousedown = (e) =>
         makeTune(e, noteDiv5, data["cord_" + (i + 1)][7][note8].sound);
@@ -190,7 +207,9 @@ window.addEventListener("DOMContentLoaded", () => {
       semiNote4.innerHTML = `<span class="notes-name">${note9.replace(
         "_sharp",
         "#"
-      )}</span>`;
+      )}</span>
+      <span class="keys-name">${data["cord_" + (i + 1)][8][note9].key}</span>
+      `;
 
       semiNote4.onmousedown = (e) =>
         makeTune(e, semiNote4, data["cord_" + (i + 1)][8][note9].sound);
@@ -207,7 +226,9 @@ window.addEventListener("DOMContentLoaded", () => {
       noteDiv6.innerHTML = `<span class="notes-name">${note10.replace(
         "_sharp",
         "#"
-      )}</span>`;
+      )}</span>
+      <span class="keys-name">${data["cord_" + (i + 1)][9][note10].key}</span>
+      `;
 
       noteDiv6.onmousedown = (e) =>
         makeTune(e, noteDiv6, data["cord_" + (i + 1)][9][note10].sound);
@@ -222,7 +243,9 @@ window.addEventListener("DOMContentLoaded", () => {
       semiNote5.innerHTML = `<span class="notes-name">${note11.replace(
         "_sharp",
         "#"
-      )}</span>`;
+      )}</span>
+      <span class="keys-name">${data["cord_" + (i + 1)][10][note11].key}</span>
+      `;
 
       semiNote5.onmousedown = (e) =>
         makeTune(e, semiNote5, data["cord_" + (i + 1)][10][note11].sound);
@@ -242,7 +265,9 @@ window.addEventListener("DOMContentLoaded", () => {
       noteDiv7.innerHTML = `<span class="notes-name">${note12.replace(
         "_sharp",
         "#"
-      )}</span>`;
+      )}</span>
+      <span class="keys-name">${data["cord_" + (i + 1)][11][note12].key}</span>
+      `;
 
       noteDiv7.onmousedown = (e) =>
         makeTune(e, noteDiv7, data["cord_" + (i + 1)][11][note12].sound);

@@ -46,6 +46,10 @@
               <span class="group-[.active]:inline-block hidden">hide notes</span>
               <span class="group-[.active]:hidden">show notes</span>
             </button>
+            <button id="show-hide-keys" class="active group w-[150px] piano-btn">
+              <span class="group-[.active]:inline-block hidden">hide key</span>
+              <span class="group-[.active]:hidden">show key</span>
+            </button>
 
             <div class="flex items-center gap-2">
               <label class="text-white text-sm" for="volumeControl">
@@ -208,6 +212,22 @@
     allSongs().forEach((el, i) => {
       chooseSongSelect.innerHTML += `<option ${el.def_cord ? `data-cord="${el.def_cord}"` : ''}  ${el.def_speed ? `data-speed="${el.def_speed}"` : ''} data-max="${el.max_cord}" data-min="${el.min_cord}" value="${i}">${el.name}</option`
     });
+
+  </script>
+   <script>
+    let showHideNotes = document.getElementById('show-hide-notes')
+    let showHideKey = document.getElementById('show-hide-keys')
+    let piano = document.querySelector('.piano')
+
+    showHideNotes.addEventListener('click',()=>{
+      showHideNotes.classList.toggle('active')
+      piano.classList.toggle('hide-note')
+    })
+
+    showHideKey.addEventListener('click',()=>{
+      showHideKey.classList.toggle('active')
+      piano.classList.toggle('hide-key')
+    })
 
   </script>
   <script src="./src/js/piano/piano.js"></script>

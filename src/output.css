@@ -581,7 +581,6 @@ video {
 .container {
   margin-left: auto;
   margin-right: auto;
-  max-width: 1140px;
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -1258,19 +1257,19 @@ select {
   outline-offset: 2px;
 }
 
-.piano{
+.piano {
   position: relative;
 }
 
-.piano::after{
+.piano::after {
   position: absolute;
-  content: '';
+  content: "";
   top: 100%;
   margin-top: -10px;
   left: 0;
   width: 100%;
   height: 20px;
-  background:  rgb(51, 51, 51);
+  background: rgb(51, 51, 51);
   border-bottom-left-radius: 60px;
   border-bottom-right-radius: 60px;
 }
@@ -1283,8 +1282,8 @@ select {
   width: 0px;
 }
 
-.configuire-board{
-  background:  rgb(63, 63, 63);
+.configuire-board {
+  background: rgb(63, 63, 63);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.767) inset;
 }
 
@@ -1294,8 +1293,9 @@ select {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  align-items: flex-end;
-  justify-content: center;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: flex-start;
   padding-bottom: 1rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -1303,8 +1303,8 @@ select {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
-.note{
-  width: 48px;
+.note {
+  width: 42px;
   position: relative;
   height: 100%;
   flex: 1 1 0%;
@@ -1312,12 +1312,14 @@ select {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.semi-note-left, .semi-note-right, .semi-note-middle {
+.semi-note-left,
+.semi-note-right,
+.semi-note-middle {
   position: absolute;
   top: 0px;
   right: 0px;
   height: 68%;
-  width: 70%;
+  width: 75%;
   border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
   border-width: 2px;
@@ -1330,10 +1332,8 @@ select {
   line-height: 1rem;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-  box-shadow: 
-        0 4px 8px rgba(0, 0, 0, 0.4),
-        inset 0 -4px 8px rgba(0, 0, 0, 0.6),
-        inset 0 4px 8px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), inset 0 -4px 8px rgba(0, 0, 0, 0.6),
+    inset 0 4px 8px rgba(255, 255, 255, 0.2);
 }
 
 .semi-note-left {
@@ -1359,41 +1359,41 @@ select {
   transition-duration: 300ms;
 }
 
-.cord > .note:nth-child(1){
+.cord > .note:nth-child(1) {
   z-index: 7;
 }
 
-.cord > .note:nth-child(2){
+.cord > .note:nth-child(2) {
   z-index: 6;
 }
 
-.cord > .note:nth-child(3){
+.cord > .note:nth-child(3) {
   z-index: 5;
 }
 
-.cord > .note:nth-child(4){
+.cord > .note:nth-child(4) {
   z-index: 4;
 }
 
-.cord > .note:nth-child(5){
+.cord > .note:nth-child(5) {
   z-index: 3;
 }
 
-.cord > .note:nth-child(6){
+.cord > .note:nth-child(6) {
   z-index: 2;
 }
 
-.cord > .note:nth-child(7){
+.cord > .note:nth-child(7) {
   z-index: 1;
 }
 
-.semi-note-left.active, .semi-note-right.active, .semi-note-middle.active {
+.semi-note-left.active,
+.semi-note-right.active,
+.semi-note-middle.active {
   --tw-bg-opacity: 1;
   background-color: rgb(20 184 166 / var(--tw-bg-opacity));
-  box-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.4), 
-        inset 0 -2px 4px rgba(0, 0, 0, 0.6),
-        inset 0 2px 4px rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.6),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2) !important;
 }
 
 .note.active {
@@ -1401,7 +1401,7 @@ select {
   background-color: rgb(20 184 166 / var(--tw-bg-opacity));
 }
 
-.shadow-1{
+.shadow-1 {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.274);
 }
 
@@ -1433,14 +1433,26 @@ select {
   box-shadow: 0 0 6px rgb(34, 34, 34) inset;
 }
 
-.notes-name{
+.notes-name {
   text-transform: capitalize;
   transition: all 300ms;
 }
 
-.hide-note.hide-note .switch .notes-name {
-  opacity: 0;
-  visibility: hidden;
+.keys-name {
+  transition: all 500ms;
+  font-weight: bold;
+}
+
+.hide-note .notes-name {
+  display: none;
+}
+
+.hide-key .keys-name {
+  display: none;
+}
+
+.piano:not(.hide-note) .keys-name {
+  color: tomato;
 }
 
 .sound-wave {
@@ -1493,7 +1505,7 @@ select {
   background: #5f5f5f;
   outline: none;
   opacity: 0.7;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 .slider:hover {
