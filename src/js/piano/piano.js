@@ -592,6 +592,7 @@ window.addEventListener("DOMContentLoaded", () => {
   let timeouts = [];
 
   let noteDiv;
+  let stayNodeDiv;
   let songTimeline = document.getElementById("song-timeline");
 
   function removeInnerTimeline() {
@@ -605,6 +606,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     autoPlayTimeline.classList.remove("active");
   }
+
+  const colors = ['#D1E9F6', '#7FA1C3', '#B4E380','#F31559' ,'#F9E400', '#36BA98', '#9195F6','#FD5D5D'];
 
   autoPlayBtn.addEventListener("click", () => {
     chosenSong = allSongs(baseSpeed, baseCord)[chooseSong.value];
@@ -625,9 +628,13 @@ window.addEventListener("DOMContentLoaded", () => {
         let timelineDuration = 2700;
 
         chosenSong.notes.forEach((el, i) => {
+
+          const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
           let timelineDiv = document.querySelector(`.time-line-${el.octave}`);
 
           let timelineInner = document.createElement("div");
+          // timelineInner.style.backgroundColor = randomColor;
 
           timelineDiv.append(timelineInner);
           timeLineInnerPush.push(timelineInner);
@@ -648,12 +655,25 @@ window.addEventListener("DOMContentLoaded", () => {
           timelineDelay += el.duration / 10;
 
           const timeout = setTimeout(() => {
-            if (noteDiv) {
-              noteDiv.onmouseup();
+            if (noteDiv || stayNodeDiv) {
+              if(el.stay){
+                console.log('stay:',el.stay);
+                setTimeout(() => {
+                  stayNodeDiv.onmouseup();
+                }, el.stay)
+              }else{
+                console.log('normal:',el.stay);
+                noteDiv.onmouseup();
+              }
             }
 
-            noteDiv = document.querySelector(`.${el.octave}`);
-            noteDiv.onmousedown();
+            if(el.stay){
+              stayNodeDiv = document.querySelector(`.${el.octave}`);
+              stayNodeDiv.onmousedown();
+            }else{
+              noteDiv = document.querySelector(`.${el.octave}`);
+              noteDiv.onmousedown();
+            }
           }, time);
 
           timeouts.push(timeout);
@@ -664,7 +684,8 @@ window.addEventListener("DOMContentLoaded", () => {
         autoPlayTimelineInner.style.transform = "translateY(100%)";
 
         const finalTimeout = setTimeout(() => {
-          if (noteDiv) {
+          if (noteDiv || stayNodeDiv) {
+            stayNodeDiv.onmouseup();
             noteDiv.onmouseup();
             removeInnerTimeline();
           }
@@ -708,7 +729,8 @@ window.addEventListener("DOMContentLoaded", () => {
     timeouts = [];
 
     // Ensure the current note is stopped
-    if (noteDiv) {
+    if (noteDiv || stayNodeDiv) {
+      stayNodeDiv.onmouseup();
       noteDiv.onmouseup();
     }
   });
@@ -782,4 +804,17 @@ window.addEventListener("DOMContentLoaded", () => {
       (baseSpeedValue * (+controlSpeed.max / 2)) / +controlSpeed.value
     );
   });
+
+  playWithAutoPlay.addEventListener('click',()=>{
+    isAutoPlaying = !isAutoPlaying;
+    playWithAutoPlay.classList.toggle('selected')
+    if(isAutoPlaying){
+      // autoPlaySection.classList.add("playing");
+      allCord.classList.add("pointer-events-none");
+    }else{
+      // autoPlaySection.classList.remove("playing");
+      allCord.classList.remove("pointer-events-none");
+    }
+  })
 });
+
