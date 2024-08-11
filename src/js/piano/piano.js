@@ -657,12 +657,10 @@ window.addEventListener("DOMContentLoaded", () => {
           const timeout = setTimeout(() => {
             if (noteDiv || stayNodeDiv) {
               if(el.stay){
-                console.log('stay:',el.stay);
                 setTimeout(() => {
                   stayNodeDiv.onmouseup();
                 }, el.stay)
               }else{
-                console.log('normal:',el.stay);
                 noteDiv.onmouseup();
               }
             }
@@ -685,7 +683,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
         const finalTimeout = setTimeout(() => {
           if (noteDiv || stayNodeDiv) {
-            stayNodeDiv.onmouseup();
+            if(stayNodeDiv){
+              stayNodeDiv.onmouseup();
+            }
             noteDiv.onmouseup();
             removeInnerTimeline();
           }
@@ -730,7 +730,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Ensure the current note is stopped
     if (noteDiv || stayNodeDiv) {
-      stayNodeDiv.onmouseup();
+      if(stayNodeDiv){
+        stayNodeDiv.onmouseup();
+      }
       noteDiv.onmouseup();
     }
   });
