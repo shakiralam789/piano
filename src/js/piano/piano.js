@@ -3,8 +3,13 @@ window.addEventListener("DOMContentLoaded", () => {
   let baseSpeedValue = 300;
   let baseCordValue = 3;
   let selectSpeedCord = document.querySelector("#select-speed-cord");
+  let playWithAutoPlay = document.querySelector("#play-with-auto-play");
   let controlSpeed = document.getElementById("control-speed");
-
+  let autoPlayTimeline = document.getElementById("auto-play-timeline");
+  let autoPlayTimelineInner = document.getElementById(
+    "auto-play-timeline-inner"
+  );
+  let timeLineInnerPush = [];
   let baseCord = baseCordValue;
   let baseSpeed = baseSpeedValue;
 
@@ -69,22 +74,31 @@ window.addEventListener("DOMContentLoaded", () => {
       cord.className = `cord c${i + 1}`;
 
       // 1
-      //   ra
+      //   c
       let noteDiv1 = document.createElement("div");
       noteDiv1.className = `switch note c${i + 1}_${note1}`;
       noteDiv1.setAttribute("data-key", data["cord_" + (i + 1)][0][note1].key);
       noteDiv1.innerHTML = `
-      <span class="notes-name">${note1.replace(
-        "_sharp",
-        "#"
-      )}${i + 1}</span>
+      <span class="notes-name">${note1.replace("_sharp", "#")}${i + 1}</span>
       <span class="keys-name">${data["cord_" + (i + 1)][0][note1].key}</span>
       `;
 
       noteDiv1.onmousedown = (e) =>
         makeTune(e, noteDiv1, data["cord_" + (i + 1)][0][note1].sound);
 
-      //   soft ga
+      // timeline
+      let timeLineDiv1 = document.createElement("div");
+      timeLineDiv1.className = "time-line";
+      timeLineDiv1.innerHTML = `
+        <div class="timeline-inner time-line-c${i + 1}_${note1}"></div>
+        <div class="timeline-inner-sharp timeline-inner-sharp-left time-line-c${
+          i + 1
+        }_${note2}"></div>
+      `;
+
+      autoPlayTimelineInner.append(timeLineDiv1);
+
+      //   c#
       let semiNote1 = document.createElement("div");
       semiNote1.className = `switch semi-note-left c${i + 1}_${note2}`;
       semiNote1.setAttribute("data-key", data["cord_" + (i + 1)][1][note2].key);
@@ -103,7 +117,7 @@ window.addEventListener("DOMContentLoaded", () => {
       cord.append(noteDiv1);
 
       // 2
-      //   ga
+      // d
       let noteDiv2 = document.createElement("div");
       noteDiv2.className = `switch note c${i + 1}_${note3}`;
       noteDiv2.setAttribute("data-key", data["cord_" + (i + 1)][2][note3].key);
@@ -117,7 +131,19 @@ window.addEventListener("DOMContentLoaded", () => {
       noteDiv2.onmousedown = (e) =>
         makeTune(e, noteDiv2, data["cord_" + (i + 1)][2][note3].sound);
 
-      //   ma
+      // timeline
+      let timeLineDiv2 = document.createElement("div");
+      timeLineDiv2.className = "time-line";
+      timeLineDiv2.innerHTML = `
+         <div class="timeline-inner time-line-c${i + 1}_${note3}"></div>
+         <div class="timeline-inner-sharp timeline-inner-sharp-right time-line-c${
+           i + 1
+         }_${note4}"></div>
+       `;
+
+      autoPlayTimelineInner.append(timeLineDiv2);
+
+      //   d#
       let semiNote2 = document.createElement("div");
       semiNote2.className = `switch semi-note-right c${i + 1}_${note4}`;
       semiNote2.setAttribute("data-key", data["cord_" + (i + 1)][3][note4].key);
@@ -136,7 +162,7 @@ window.addEventListener("DOMContentLoaded", () => {
       cord.append(noteDiv2);
 
       // 3
-      //   sharp ma
+      //  e
       let noteDiv3 = document.createElement("div");
       noteDiv3.className = `switch note c${i + 1}_${note5}`;
       noteDiv3.setAttribute("data-key", data["cord_" + (i + 1)][4][note5].key);
@@ -150,10 +176,19 @@ window.addEventListener("DOMContentLoaded", () => {
       noteDiv3.onmousedown = (e) =>
         makeTune(e, noteDiv3, data["cord_" + (i + 1)][4][note5].sound);
 
+      // timeline
+      let timeLineDiv3 = document.createElement("div");
+      timeLineDiv3.className = "time-line";
+      timeLineDiv3.innerHTML = `
+          <div class="timeline-inner time-line-c${i + 1}_${note5}"></div>
+        `;
+
+      autoPlayTimelineInner.append(timeLineDiv3);
+
       cord.append(noteDiv3);
 
       // 4
-      //   pa
+      //  f
       let noteDiv4 = document.createElement("div");
       noteDiv4.className = `switch note c${i + 1}_${note6}`;
       noteDiv4.setAttribute("data-key", data["cord_" + (i + 1)][5][note6].key);
@@ -167,7 +202,19 @@ window.addEventListener("DOMContentLoaded", () => {
       noteDiv4.onmousedown = (e) =>
         makeTune(e, noteDiv4, data["cord_" + (i + 1)][5][note6].sound);
 
-      //   soft dha
+      // timeline
+      let timeLineDiv4 = document.createElement("div");
+      timeLineDiv4.className = "time-line";
+      timeLineDiv4.innerHTML = `
+          <div class="timeline-inner time-line-c${i + 1}_${note6}"></div>
+          <div class="timeline-inner-sharp timeline-inner-sharp-left time-line-c${
+            i + 1
+          }_${note7}"></div>
+        `;
+
+      autoPlayTimelineInner.append(timeLineDiv4);
+
+      // f#
       let semiNote3 = document.createElement("div");
       semiNote3.className = `switch semi-note-left c${i + 1}_${note7}`;
       semiNote3.setAttribute("data-key", data["cord_" + (i + 1)][6][note7].key);
@@ -186,7 +233,7 @@ window.addEventListener("DOMContentLoaded", () => {
       cord.append(noteDiv4);
 
       // 5
-      //   dha
+      //   g
       let noteDiv5 = document.createElement("div");
       noteDiv5.className = `switch note c${i + 1}_${note8}`;
       noteDiv5.setAttribute("data-key", data["cord_" + (i + 1)][7][note8].key);
@@ -200,7 +247,19 @@ window.addEventListener("DOMContentLoaded", () => {
       noteDiv5.onmousedown = (e) =>
         makeTune(e, noteDiv5, data["cord_" + (i + 1)][7][note8].sound);
 
-      //   soft ni
+      // timeline
+      let timeLineDiv6 = document.createElement("div");
+      timeLineDiv6.className = "time-line";
+      timeLineDiv6.innerHTML = `
+        <div class="timeline-inner time-line-c${i + 1}_${note8}"></div>
+        <div class="timeline-inner-sharp timeline-inner-sharp-middle time-line-c${
+          i + 1
+        }_${note9}"></div>
+      `;
+
+      autoPlayTimelineInner.append(timeLineDiv6);
+
+      //   g#
       let semiNote4 = document.createElement("div");
       semiNote4.className = `switch semi-note-middle c${i + 1}_${note9}`;
       semiNote4.setAttribute("data-key", data["cord_" + (i + 1)][8][note9].key);
@@ -219,7 +278,7 @@ window.addEventListener("DOMContentLoaded", () => {
       cord.append(noteDiv5);
 
       // 6
-      //   ni
+      //  a
       let noteDiv6 = document.createElement("div");
       noteDiv6.className = `switch note c${i + 1}_${note10}`;
       noteDiv6.setAttribute("data-key", data["cord_" + (i + 1)][9][note10].key);
@@ -232,6 +291,20 @@ window.addEventListener("DOMContentLoaded", () => {
 
       noteDiv6.onmousedown = (e) =>
         makeTune(e, noteDiv6, data["cord_" + (i + 1)][9][note10].sound);
+
+      // timeline
+      let timeLineDiv7 = document.createElement("div");
+      timeLineDiv7.className = "time-line";
+      timeLineDiv7.innerHTML = `
+          <div class="timeline-inner timeline-inner time-line-c${
+            i + 1
+          }_${note10}"></div>
+          <div class="timeline-inner-sharp timeline-inner-sharp-right time-line-c${
+            i + 1
+          }_${note11}"></div>
+        `;
+
+      autoPlayTimelineInner.append(timeLineDiv7);
 
       //   sa
       let semiNote5 = document.createElement("div");
@@ -255,7 +328,7 @@ window.addEventListener("DOMContentLoaded", () => {
       cord.append(noteDiv6);
 
       // 7
-      //   soft ra
+      //  b
       let noteDiv7 = document.createElement("div");
       noteDiv7.className = `switch note c${i + 1}_${note12}`;
       noteDiv7.setAttribute(
@@ -272,10 +345,100 @@ window.addEventListener("DOMContentLoaded", () => {
       noteDiv7.onmousedown = (e) =>
         makeTune(e, noteDiv7, data["cord_" + (i + 1)][11][note12].sound);
 
+      // timeline
+      let timeLineDiv8 = document.createElement("div");
+      timeLineDiv8.className = "time-line";
+      timeLineDiv8.innerHTML = `
+        <div class="timeline-inner time-line-c${i + 1}_${note12}"></div>
+      `;
+
+      autoPlayTimelineInner.append(timeLineDiv8);
+
       cord.append(noteDiv7);
 
       allCord.append(cord);
     });
+
+    let zoomOut = document.getElementById("zoom-out-key");
+    let zoomIn = document.getElementById("zoom-in-key");
+    let fullView = document.getElementById("key-full-view");
+    let allNotes = piano.querySelectorAll(".note");
+    let timeLine = piano.querySelectorAll(".time-line");
+
+    let zoomCount = 42;
+
+    let minWidth = 30;
+    let maxWidth = 60;
+
+    resizeKey();
+
+    zoomOut.addEventListener("click", () => {
+      if (zoomCount > minWidth) {
+        zoomCount--;
+        resizeKey();
+      }
+    });
+
+    zoomIn.addEventListener("click", () => {
+      if (zoomCount < maxWidth) {
+        zoomCount++;
+        resizeKey();
+      }
+    });
+
+    function resizeKey() {
+      allNotes.forEach((el, i) => {
+        el.style.width = zoomCount + "px";
+        el.style.minWidth = minWidth + "px";
+
+        if (timeLine[i]) {
+          timeLine[i].style.width = zoomCount + "px";
+          timeLine[i].style.minWidth = minWidth + "px";
+        }
+      });
+
+      allCord.style.minHeight = "200px";
+      fullView.classList.remove("active");
+
+      allCord.style.aspectRatio = 100 / 20;
+
+      autoPlayTimeline.style.width = allCord.scrollWidth + "px";
+      resizeFont();
+    }
+
+    fullView.addEventListener("click", () => {
+      fullView.classList.toggle("active");
+
+      if (fullView.classList.contains("active")) {
+        allNotes.forEach((el, i) => {
+          el.style.width = "auto";
+          el.style.minWidth = null;
+
+          if (timeLine[i]) {
+            timeLine[i].style.width = "auto";
+            timeLine[i].style.minWidth = null;
+          }
+        });
+
+        allCord.style.minHeight = null;
+        allCord.style.aspectRatio = 100 / 15;
+
+        autoPlayTimeline.style.width = "100%";
+
+        resizeFont();
+      } else {
+        resizeKey();
+      }
+    });
+
+    function resizeFont() {
+      const pianoWidth = allNotes[0].offsetWidth;
+      piano.style.fontSize = pianoWidth / 3.5 + "px"; // Adjust the divisor as needed
+    }
+
+    window.addEventListener("resize", resizeFont);
+
+    resizeFont();
 
     if (page_loader) {
       page_loader.remove();
@@ -318,28 +481,10 @@ window.addEventListener("DOMContentLoaded", () => {
     activeSwitch?.classList.remove("active");
   }
 
-  let activeScale = +document.querySelector(".scale-change-header.active")
-    .dataset["scale"];
-
-  tabContext();
-
-  anyToggle.action = ({ thisHeader }) => {
-    if (thisHeader.classList.contains("scale-change-header")) {
-      activeScale = thisHeader.dataset["scale"];
-      tabContext();
-    }
-  };
-
-  function tabContext() {
-    let cordDiv = document.querySelector(`.cord.c${activeScale}`);
-    if (cordDiv) {
-      cordDiv.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  }
-
   let customizeKeyModal = document.getElementById("customize-key-modal");
 
   window.addEventListener("keydown", (e) => {
+    
     if (!isAutoPlaying && !customizeKeyModal.classList.contains("active")) {
       if (activeKeys.has(e.key)) return;
       activeKeys.add(e.key);
@@ -449,44 +594,91 @@ window.addEventListener("DOMContentLoaded", () => {
   let noteDiv;
   let songTimeline = document.getElementById("song-timeline");
 
+  function removeInnerTimeline() {
+    timeLineInnerPush?.forEach((el) => {
+      el.remove();
+    });
+
+    autoPlayTimelineInner.style.height = null;
+    autoPlayTimelineInner.style.transform = null;
+    autoPlayTimelineInner.style.transition = null;
+
+    autoPlayTimeline.classList.remove("active");
+  }
+
   autoPlayBtn.addEventListener("click", () => {
     chosenSong = allSongs(baseSpeed, baseCord)[chooseSong.value];
     if (chosenSong && !isAutoPlaying) {
-      allCord.classList.add("pointer-events-none");
+      removeInnerTimeline();
+      autoPlayTimeline.classList.add("active");
+      setTimeout(() => {
 
-      autoPlaySection.classList.add("playing");
-      isAutoPlaying = true;
+        allCord.classList.add("pointer-events-none");
 
-      let time = 0;
+        autoPlaySection.classList.add("playing");
+        isAutoPlaying = true;
 
-      chosenSong.notes.forEach((el) => {
-        const timeout = setTimeout(() => {
-          if (noteDiv) {
-            noteDiv.onmouseup();
+        let autoPlayTimelineHeight = autoPlayTimeline.clientHeight;
+
+        let time = 2700;
+        let timelineDelay = 0;
+        let timelineDuration = 2700;
+
+        chosenSong.notes.forEach((el, i) => {
+          let timelineDiv = document.querySelector(`.time-line-${el.octave}`);
+
+          let timelineInner = document.createElement("div");
+
+          timelineDiv.append(timelineInner);
+          timeLineInnerPush.push(timelineInner);
+
+          timelineInner.style.height = `${(el.stay ? el.stay : el.duration) / 10}px`;
+
+          timelineInner.style.bottom =
+            autoPlayTimelineHeight + timelineDelay + "px";
+
+          if (i == chosenSong.notes.length - 1) {
+            autoPlayTimelineInner.style.height = `${
+              autoPlayTimeline.getBoundingClientRect().bottom -
+              timelineInner.getBoundingClientRect().top
+            }px`;
           }
 
-          noteDiv = document.querySelector(`.${el.octave}`);
-          noteDiv.onmousedown();
+          timelineDuration += el.duration;
+          timelineDelay += el.duration / 10;
+
+          const timeout = setTimeout(() => {
+            if (noteDiv) {
+              noteDiv.onmouseup();
+            }
+
+            noteDiv = document.querySelector(`.${el.octave}`);
+            noteDiv.onmousedown();
+          }, time);
+
+          timeouts.push(timeout);
+          time += el.duration; // Accumulate time
+        });
+
+        autoPlayTimelineInner.style.transition = `transform ${timelineDuration}ms linear`;
+        autoPlayTimelineInner.style.transform = "translateY(100%)";
+
+        const finalTimeout = setTimeout(() => {
+          if (noteDiv) {
+            noteDiv.onmouseup();
+            removeInnerTimeline();
+          }
+
+          autoPlaySection.classList.remove("playing");
+          allCord.classList.remove("pointer-events-none");
+          isAutoPlaying = false;
+
+          songTimeline.style.transition = null;
+          songTimeline.style.width = "0%";
         }, time);
 
-        timeouts.push(timeout);
-        time += el.duration; // Accumulate time
-      });
-
-      const finalTimeout = setTimeout(() => {
-        if (noteDiv) {
-          noteDiv.onmouseup();
-        }
-
-        autoPlaySection.classList.remove("playing");
-        allCord.classList.remove("pointer-events-none");
-        isAutoPlaying = false;
-
-        songTimeline.style.transition = null;
-        songTimeline.style.width = "0%";
-      }, time);
-
-      timeouts.push(finalTimeout);
+        timeouts.push(finalTimeout);
+      }, 500);
     }
 
     if (chosenSong) {
@@ -503,6 +695,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   autoPlayCancelBtn.addEventListener("click", () => {
+    removeInnerTimeline();
     songTimeline.style.transition = null;
     songTimeline.style.width = "0%";
 
@@ -528,8 +721,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
     controlSpeed.value = 15;
     selectCord
-    ?.querySelector("select")
-    .children[0].setAttribute("selected", "");
+      ?.querySelector("select")
+      .children[0].setAttribute("selected", "");
 
     baseCord = baseCordValue;
     baseSpeed = baseSpeedValue;
@@ -537,6 +730,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (chooseSongSelect.value) {
       selectCord.classList.add("active");
       selectSpeedCord.classList.add("active");
+      playWithAutoPlay.classList.add("active");
       selectedOption =
         chooseSongSelect.children[chooseSongSelect.options.selectedIndex];
       if (selectedOption) {
@@ -549,6 +743,7 @@ window.addEventListener("DOMContentLoaded", () => {
     } else {
       selectCord.classList.remove("active");
       selectSpeedCord.classList.remove("active");
+      playWithAutoPlay.classList.remove("active");
     }
 
     selectCord.querySelector("select").innerHTML = options;
@@ -572,7 +767,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
     if (selectedOption && selectedOption.dataset["speed"]) {
       baseSpeed = +selectedOption.dataset["speed"];
-      controlSpeed.value = Math.round((baseSpeedValue * (+controlSpeed.max / 2)) / baseSpeed) ;
+      controlSpeed.value = Math.round(
+        (baseSpeedValue * (+controlSpeed.max / 2)) / baseSpeed
+      );
     }
   });
 

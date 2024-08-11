@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 @layer components {
-  .container {
+  /* .container {
     @apply mx-auto px-4 sm:px-6;
-  }
+  } */
   .key-input {
     @apply h-9 2xl:h-11 w-full text-white block bg-transparent border border-gray-800 outline-none text-center;
   }
@@ -36,7 +36,6 @@
 select {
   @apply outline-none;
 }
-
 .piano {
   position: relative;
 }
@@ -67,56 +66,96 @@ select {
 }
 
 .switch {
-  @apply text-black flex flex-col-reverse justify-start pb-4 text-sm items-center cursor-pointer select-none;
+  @apply text-black flex flex-col-reverse justify-start pb-4 items-center cursor-pointer select-none;
 }
 
 .note {
-  width: 42px;
-  @apply bg-white h-full flex-1 relative;
+  @apply bg-white h-full flex-1 relative; 
+}
+
+#auto-play-timeline {
+  background: rgb(26, 26, 26);
+  box-shadow: 0 0 5px black inset;
+  position: relative;
+  transition: height 300ms linear;
+}
+
+#auto-play-timeline-inner .time-line{
+  @apply flex-1 h-timelineHeight;
+  position: relative
+}
+
+#auto-play-timeline-inner .time-line div{
+  @apply h-full w-full
 }
 
 .semi-note-left,
 .semi-note-right,
 .semi-note-middle {
-  @apply absolute text-white text-xs rounded-b-[6px] top-0 right-0 w-[75%] h-[68%] bg-gray-900 border-t-0 border-2 border-gray-950;
+  @apply absolute text-white rounded-b-[6px] top-0 right-0 w-[70%] h-[68%] bg-gray-900 border-t-0 border-2 border-gray-950;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), inset 0 -4px 8px rgba(0, 0, 0, 0.6),
     inset 0 4px 8px rgba(255, 255, 255, 0.2);
 }
 
-.semi-note-left {
+#auto-play-timeline-inner .time-line .timeline-inner > div{
+  @apply bg-gradient-to-b from-teal-600 to-teal-400;
+  position: absolute;
+  width: 100%;
+  border-radius: 5px;
+}
+
+#auto-play-timeline-inner .time-line .timeline-inner-sharp > div{
+  @apply bg-gradient-to-b from-pink-600 to-pink-400;
+  position: absolute;
+  width: 100%;
+  border-radius: 5px;
+  /* border: 1px solid rgb(0, 156, 156); */
+}
+
+#auto-play-timeline-inner .time-line .timeline-inner-sharp{
+  @apply absolute top-0 right-0 h-full;
+  width: 62%;
+}
+
+#auto-play-timeline-inner{
+  @apply flex items-end absolute bottom-0 left-0 right-0;
+  min-height: 100%;
+}
+
+.semi-note-left, .timeline-inner-sharp-left {
   @apply translate-x-[25%];
 }
 
-.semi-note-right {
+.semi-note-right, .timeline-inner-sharp-right {
   @apply translate-x-[75%];
 }
 
-.semi-note-middle {
+.semi-note-middle, .timeline-inner-sharp-middle {
   @apply translate-x-[50%];
 }
 
 .cord {
   @apply h-full flex-1 flex gap-0.5 duration-300;
 }
-.cord > .note:nth-child(1) {
+.cord > .note:nth-child(1), #auto-play-timeline .time-line:nth-child(1) {
   z-index: 7;
 }
-.cord > .note:nth-child(2) {
+.cord > .note:nth-child(2), #auto-play-timeline .time-line:nth-child(2) {
   z-index: 6;
 }
-.cord > .note:nth-child(3) {
+.cord > .note:nth-child(3), #auto-play-timeline .time-line:nth-child(3) {
   z-index: 5;
 }
-.cord > .note:nth-child(4) {
+.cord > .note:nth-child(4), #auto-play-timeline .time-line:nth-child(4) {
   z-index: 4;
 }
-.cord > .note:nth-child(5) {
+.cord > .note:nth-child(5), #auto-play-timeline .time-line:nth-child(5) {
   z-index: 3;
 }
-.cord > .note:nth-child(6) {
+.cord > .note:nth-child(6), #auto-play-timeline .time-line:nth-child(6) {
   z-index: 2;
 }
-.cord > .note:nth-child(7) {
+.cord > .note:nth-child(7), #auto-play-timeline .time-line:nth-child(7) {
   z-index: 1;
 }
 
@@ -234,3 +273,4 @@ select {
   @apply bg-teal-400 size-[16px] rounded-full;
   cursor: pointer;
 }
+

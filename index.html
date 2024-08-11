@@ -23,14 +23,11 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="text-center pb-4 text-teal-700 text-xl">
-      Tune is a puzzle of notes
-    </div>
+  <div class="overflow-hidden py-6 w-full flex flex-col justify-between px-4 lg:px-6">
     <div class="configuire-board w-full rounded-t-2xl bg-opacity-95">
       <div class="p-4">
-        <div class="mb-4 flex items-end justify-between">
-          <div class="flex items-center gap-2">
+        <div class="mb-4 flex flex-wrap items-end justify-between">
+          <div class="flex flex-wrap items-center gap-2">
             <button id="key-open-modal" data-outsideclick="true" data-name="first" data-role="header" data-group="modal"
               class="size-8 rounded-full bg-[#474747] shadow-1 text-white flex items-center justify-center">
               <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -41,17 +38,47 @@
               </svg>
             </button>
 
-            <button id="reset-setting" class="piano-btn">Default setting</button>
-            <button id="show-hide-notes" class="active group w-[150px] piano-btn">
+            <button id="reset-setting" class="piano-btn hidden">Default setting</button>
+            <button id="show-hide-notes" class="active group w-[125px] piano-btn">
               <span class="group-[.active]:inline-block hidden">hide notes</span>
               <span class="group-[.active]:hidden">show notes</span>
             </button>
-            <button id="show-hide-keys" class="active group w-[150px] piano-btn">
+            <button id="show-hide-keys" class="active group w-[125px] piano-btn">
               <span class="group-[.active]:inline-block hidden">hide key</span>
               <span class="group-[.active]:hidden">show key</span>
             </button>
-
-            <div class="flex items-center gap-2">
+            <div class="flex flex-wrap items-center gap-2">
+              <button id="zoom-out-key"
+                class="size-8 rounded-full bg-[#474747] shadow-1 text-white flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="size-4">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM13.5 10.5h-6" />
+                </svg>
+              </button>
+              <button id="zoom-in-key"
+                class="size-8 rounded-full bg-[#474747] shadow-1 text-white flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="size-4">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+                </svg>
+              </button>
+              <button id="key-full-view"
+                class="group/view size-8 rounded-full bg-[#474747] shadow-1 text-white flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="size-4 group-[.active]/view:hidden">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="size-4 hidden group-[.active]/view:block">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9 9V4.5M9 9H4.5M9 9 3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5 5.25 5.25" />
+                </svg>
+              </button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
               <label class="text-white text-sm" for="volumeControl">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="size-5">
@@ -63,35 +90,9 @@
                 value="0.3">
             </div>
           </div>
-          <div class="flex items-center gap-3">
-            <button data-scale="2" data-role="header" data-name="scale-header-2" data-group="scale"
-              class="scale-change-header group">
-              <span class="scale-change-header-child group-[.active]:-translate-y-3.5">
-                C2
-              </span>
-            </button>
-            <button data-scale="3" data-role="header" data-name="scale-header-3" data-group="scale"
-              class="scale-change-header group active">
-              <span class="scale-change-header-child group-[.active]:-translate-y-3.5">
-                C3
-              </span>
-            </button>
-            <button data-scale="4" data-role="header" data-name="scale-header-4" data-group="scale"
-              class="scale-change-header group">
-              <span class="scale-change-header-child group-[.active]:-translate-y-3.5">
-                C4
-              </span>
-            </button>
-            <button data-scale="5" data-role="header" data-name="scale-header-5" data-group="scale"
-              class="scale-change-header group">
-              <span class="scale-change-header-child group-[.active]:-translate-y-3.5">
-                C5
-              </span>
-            </button>
-          </div>
         </div>
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center justify-between">
+          <div class="flex flex-wrap items-center gap-2">
             <div class="relative">
               <select autocomplete="off" id="choose-song"
                 class="pr-8 cursor-pointer appearance-none piano-btn py-2 text-left" name="" id="">
@@ -113,10 +114,20 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
+            <button id="play-with-auto-play"
+            class="hidden group [&.active]:block piano-btn">
+            <span class="group-[.select]:hidden">
+              play with auto play
+            </span>
+            <span class="group-[.select]:block hidden">
+              restrict with auto play
+            </span>
+          </button>
             <div id="select-speed-cord" class="text-white relative hidden [&.active]:flex items-center gap-3">
               <span>Speed</span> <input autocomplete="off" type="range" id="control-speed" class="slider" value="15"
                 min="10" max="30" placeholder="speed">
             </div>
+           
             <div id="auto-play-section" class="text-white group/autoPlay flex flex-wrap gap-2 items-center">
               <button id="auto-play-btn"
                 class="rounded-md flex items-center justify-center h-[36px] aspect-square group-[.playing]/autoPlay:cursor-default group-[.playing]/autoPlay:bg-teal-700 bg-teal-600">
@@ -159,7 +170,6 @@
             <audio id="audioPlayback" controls></audio> -->
           </div>
         </div>
-
       </div>
       <div class="bg-black h-0.5"></div>
     </div>
@@ -168,11 +178,13 @@
         <div id="song-timeline" class="h-full rounded-b-full bg-teal-600" style="width: 0%;"></div>
       </div>
       <div class="rounded-b-2xl w-full overflow-x-scroll customScroll-none">
-        <div id="allCord" class="h-[250px] flex gap-0.5"></div>
+        <div id="auto-play-timeline" class="h-0 [&.active]:h-timelineHeight overflow-hidden">
+          <div id="auto-play-timeline-inner"></div>
+        </div>
+        <div id="allCord" class="flex gap-0.5"></div>
       </div>
     </div>
   </div>
-
   <div
     class="px-4 has-[.modal.active]:pointer-events-auto has-[.modal.active]:opacity-100 pointer-events-none flex opacity-0 duration-500 fixed top-0 left-0 z-30 w-full bg-black/80 h-screen overflow-y-auto items-center justify-center">
     <form autocomplete="off" id="customize-key-modal" data-name="first" data-role="content" data-group="modal"
@@ -206,30 +218,28 @@
   <script src="./src/js/piano/buildFormField.js"></script>
   <script src="./src/js/anyToggle.js"></script>
   <script>
-
     let chooseSongSelect = document.querySelector('#choose-song')
-
     allSongs().forEach((el, i) => {
       chooseSongSelect.innerHTML += `<option ${el.def_cord ? `data-cord="${el.def_cord}"` : ''}  ${el.def_speed ? `data-speed="${el.def_speed}"` : ''} data-max="${el.max_cord}" data-min="${el.min_cord}" value="${i}">${el.name}</option`
     });
-
   </script>
-   <script>
+  <script>
     let showHideNotes = document.getElementById('show-hide-notes')
     let showHideKey = document.getElementById('show-hide-keys')
     let piano = document.querySelector('.piano')
 
-    showHideNotes.addEventListener('click',()=>{
+    showHideNotes.addEventListener('click', () => {
       showHideNotes.classList.toggle('active')
       piano.classList.toggle('hide-note')
     })
 
-    showHideKey.addEventListener('click',()=>{
+    showHideKey.addEventListener('click', () => {
       showHideKey.classList.toggle('active')
       piano.classList.toggle('hide-key')
     })
 
   </script>
+
   <script src="./src/js/piano/piano.js"></script>
 </body>
 

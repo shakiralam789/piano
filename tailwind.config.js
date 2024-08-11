@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{html,js}", "./index.html"],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        'timelineHeight': '250px',
+      },
+    },
   },
   plugins: [
     function({ addUtilities }) {
