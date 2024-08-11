@@ -83,11 +83,11 @@ window.addEventListener("DOMContentLoaded", () => {
       <span class="keys-name">${data["cord_" + (i + 1)][0][note1].key}</span>
       `;
 
-      noteDiv1.onmousedown = (e) =>
+      noteDiv1.onpointerdown = (e) =>
         makeTune(e, noteDiv1, data["cord_" + (i + 1)][0][note1].sound);
 
-      noteDiv1.ontouchstart = (e) =>
-        makeTune(e, noteDiv1, data["cord_" + (i + 1)][0][note1].sound);
+      // noteDiv1.ontouchstart = (e) =>
+      //   makeTune(e, noteDiv1, data["cord_" + (i + 1)][0][note1].sound);
 
       // timeline
       let timeLineDiv1 = document.createElement("div");
@@ -112,10 +112,10 @@ window.addEventListener("DOMContentLoaded", () => {
       <span class="keys-name">${data["cord_" + (i + 1)][1][note2].key}</span>
       `;
 
-      semiNote1.onmousedown = (e) =>
+      semiNote1.onpointerdown = (e) =>
         makeTune(e, semiNote1, data["cord_" + (i + 1)][1][note2].sound);
-      semiNote1.ontouchstart = (e) =>
-        makeTune(e, semiNote1, data["cord_" + (i + 1)][1][note2].sound);
+      // semiNote1.ontouchstart = (e) =>
+      //   makeTune(e, semiNote1, data["cord_" + (i + 1)][1][note2].sound);
 
       noteDiv1.append(semiNote1);
 
@@ -133,10 +133,10 @@ window.addEventListener("DOMContentLoaded", () => {
       <span class="keys-name">${data["cord_" + (i + 1)][2][note3].key}</span>
       `;
 
-      noteDiv2.onmousedown = (e) =>
+      noteDiv2.onpointerdown = (e) =>
         makeTune(e, noteDiv2, data["cord_" + (i + 1)][2][note3].sound);
-      noteDiv2.ontouchstart = (e) =>
-        makeTune(e, noteDiv2, data["cord_" + (i + 1)][2][note3].sound);
+      // noteDiv2.ontouchstart = (e) =>
+      //   makeTune(e, noteDiv2, data["cord_" + (i + 1)][2][note3].sound);
 
       // timeline
       let timeLineDiv2 = document.createElement("div");
@@ -161,10 +161,10 @@ window.addEventListener("DOMContentLoaded", () => {
       <span class="keys-name">${data["cord_" + (i + 1)][3][note4].key}</span>
       `;
 
-      semiNote2.onmousedown = (e) =>
+      semiNote2.onpointerdown = (e) =>
         makeTune(e, semiNote2, data["cord_" + (i + 1)][3][note4].sound);
-      semiNote2.ontouchstart = (e) =>
-        makeTune(e, semiNote2, data["cord_" + (i + 1)][3][note4].sound);
+      // semiNote2.ontouchstart = (e) =>
+      //   makeTune(e, semiNote2, data["cord_" + (i + 1)][3][note4].sound);
 
       noteDiv2.append(semiNote2);
 
@@ -182,10 +182,10 @@ window.addEventListener("DOMContentLoaded", () => {
       <span class="keys-name">${data["cord_" + (i + 1)][4][note5].key}</span>
       `;
 
-      noteDiv3.onmousedown = (e) =>
+      noteDiv3.onpointerdown = (e) =>
         makeTune(e, noteDiv3, data["cord_" + (i + 1)][4][note5].sound);
-      noteDiv3.ontouchstart = (e) =>
-        makeTune(e, noteDiv3, data["cord_" + (i + 1)][4][note5].sound);
+      // noteDiv3.ontouchstart = (e) =>
+      //   makeTune(e, noteDiv3, data["cord_" + (i + 1)][4][note5].sound);
 
       // timeline
       let timeLineDiv3 = document.createElement("div");
@@ -210,10 +210,10 @@ window.addEventListener("DOMContentLoaded", () => {
       <span class="keys-name">${data["cord_" + (i + 1)][5][note6].key}</span>
       `;
 
-      noteDiv4.onmousedown = (e) =>
+      noteDiv4.onpointerdown = (e) =>
         makeTune(e, noteDiv4, data["cord_" + (i + 1)][5][note6].sound);
-      noteDiv4.ontouchstart = (e) =>
-        makeTune(e, noteDiv4, data["cord_" + (i + 1)][5][note6].sound);
+      // noteDiv4.ontouchstart = (e) =>
+      //   makeTune(e, noteDiv4, data["cord_" + (i + 1)][5][note6].sound);
 
       // timeline
       let timeLineDiv4 = document.createElement("div");
@@ -238,10 +238,10 @@ window.addEventListener("DOMContentLoaded", () => {
       <span class="keys-name">${data["cord_" + (i + 1)][6][note7].key}</span>
       `;
 
-      semiNote3.onmousedown = (e) =>
+      semiNote3.onpointerdown = (e) =>
         makeTune(e, semiNote3, data["cord_" + (i + 1)][6][note7].sound);
-      semiNote3.ontouchstart = (e) =>
-        makeTune(e, semiNote3, data["cord_" + (i + 1)][6][note7].sound);
+      // semiNote3.ontouchstart = (e) =>
+      //   makeTune(e, semiNote3, data["cord_" + (i + 1)][6][note7].sound);
 
       noteDiv4.append(semiNote3);
 
@@ -259,10 +259,10 @@ window.addEventListener("DOMContentLoaded", () => {
       <span class="keys-name">${data["cord_" + (i + 1)][7][note8].key}</span>
       `;
 
-      noteDiv5.onmousedown = (e) =>
+      noteDiv5.onpointerdown = (e) =>
         makeTune(e, noteDiv5, data["cord_" + (i + 1)][7][note8].sound);
-      noteDiv5.ontouchstart = (e) =>
-        makeTune(e, noteDiv5, data["cord_" + (i + 1)][7][note8].sound);
+      // noteDiv5.ontouchstart = (e) =>
+      //   makeTune(e, noteDiv5, data["cord_" + (i + 1)][7][note8].sound);
 
       // timeline
       let timeLineDiv6 = document.createElement("div");
@@ -287,10 +287,10 @@ window.addEventListener("DOMContentLoaded", () => {
       <span class="keys-name">${data["cord_" + (i + 1)][8][note9].key}</span>
       `;
 
-      semiNote4.onmousedown = (e) =>
+      semiNote4.onpointerdown = (e) =>
         makeTune(e, semiNote4, data["cord_" + (i + 1)][8][note9].sound);
-      semiNote4.ontouchstart = (e) =>
-        makeTune(e, semiNote4, data["cord_" + (i + 1)][8][note9].sound);
+      // semiNote4.ontouchstart = (e) =>
+      //   makeTune(e, semiNote4, data["cord_" + (i + 1)][8][note9].sound);
 
       noteDiv5.append(semiNote4);
 
@@ -308,10 +308,10 @@ window.addEventListener("DOMContentLoaded", () => {
       <span class="keys-name">${data["cord_" + (i + 1)][9][note10].key}</span>
       `;
 
-      noteDiv6.onmousedown = (e) =>
+      noteDiv6.onpointerdown = (e) =>
         makeTune(e, noteDiv6, data["cord_" + (i + 1)][9][note10].sound);
-      noteDiv6.ontouchstart = (e) =>
-        makeTune(e, noteDiv6, data["cord_" + (i + 1)][9][note10].sound);
+      // noteDiv6.ontouchstart = (e) =>
+      //   makeTune(e, noteDiv6, data["cord_" + (i + 1)][9][note10].sound);
 
       // timeline
       let timeLineDiv7 = document.createElement("div");
@@ -341,10 +341,10 @@ window.addEventListener("DOMContentLoaded", () => {
       <span class="keys-name">${data["cord_" + (i + 1)][10][note11].key}</span>
       `;
 
-      semiNote5.onmousedown = (e) =>
+      semiNote5.onpointerdown = (e) =>
         makeTune(e, semiNote5, data["cord_" + (i + 1)][10][note11].sound);
-      semiNote5.ontouchstart = (e) =>
-        makeTune(e, semiNote5, data["cord_" + (i + 1)][10][note11].sound);
+      // semiNote5.ontouchstart = (e) =>
+      //   makeTune(e, semiNote5, data["cord_" + (i + 1)][10][note11].sound);
 
       noteDiv6.append(semiNote5);
 
@@ -365,10 +365,10 @@ window.addEventListener("DOMContentLoaded", () => {
       <span class="keys-name">${data["cord_" + (i + 1)][11][note12].key}</span>
       `;
 
-      noteDiv7.onmousedown = (e) =>
+      noteDiv7.onpointerdown = (e) =>
         makeTune(e, noteDiv7, data["cord_" + (i + 1)][11][note12].sound);
-      noteDiv7.ontouchstart = (e) =>
-        makeTune(e, noteDiv7, data["cord_" + (i + 1)][11][note12].sound);
+      // noteDiv7.ontouchstart = (e) =>
+      //   makeTune(e, noteDiv7, data["cord_" + (i + 1)][11][note12].sound);
 
       // timeline
       let timeLineDiv8 = document.createElement("div");
@@ -489,7 +489,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (e) {
       e.stopPropagation();
     }
-    
+
     swt.classList.add("active");
 
     if (audio) {
@@ -499,8 +499,8 @@ window.addEventListener("DOMContentLoaded", () => {
       source.start(0);
     }
 
-    swt.onmouseup = () => initialize(swt);
-    swt.ontouchend = () => initialize(swt);
+    swt.onpointerup = () => initialize(swt);
+    // swt.ontouchend = () => initialize(swt);
   }
 
   function initialize(activeSwitch) {
@@ -542,7 +542,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function triggerNoteOn(noteElement) {
     // Your existing logic for note on
-    noteElement.onmousedown();
+    noteElement.onpointerdown();
   }
 
   function triggerNoteOff(noteElement) {
@@ -693,19 +693,19 @@ window.addEventListener("DOMContentLoaded", () => {
             if (noteDiv || stayNodeDiv) {
               if (el.stay) {
                 setTimeout(() => {
-                  stayNodeDiv.onmouseup();
+                  stayNodeDiv.onpointerup();
                 }, el.stay);
               } else {
-                noteDiv.onmouseup();
+                noteDiv.onpointerup();
               }
             }
 
             if (el.stay) {
               stayNodeDiv = document.querySelector(`.${el.octave}`);
-              stayNodeDiv.onmousedown();
+              stayNodeDiv.onpointerdown();
             } else {
               noteDiv = document.querySelector(`.${el.octave}`);
-              noteDiv.onmousedown();
+              noteDiv.onpointerdown();
             }
           }, time);
 
@@ -719,9 +719,9 @@ window.addEventListener("DOMContentLoaded", () => {
         const finalTimeout = setTimeout(() => {
           if (noteDiv || stayNodeDiv) {
             if (stayNodeDiv) {
-              stayNodeDiv.onmouseup();
+              stayNodeDiv.onpointerup();
             }
-            noteDiv.onmouseup();
+            noteDiv.onpointerup();
             removeInnerTimeline();
           }
 
@@ -769,9 +769,9 @@ window.addEventListener("DOMContentLoaded", () => {
     // Ensure the current note is stopped
     if (noteDiv || stayNodeDiv) {
       if (stayNodeDiv) {
-        stayNodeDiv.onmouseup();
+        stayNodeDiv.onpointerup();
       }
-      noteDiv.onmouseup();
+      noteDiv.onpointerup();
     }
   });
 
