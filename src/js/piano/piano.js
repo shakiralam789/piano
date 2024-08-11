@@ -86,6 +86,9 @@ window.addEventListener("DOMContentLoaded", () => {
       noteDiv1.onmousedown = (e) =>
         makeTune(e, noteDiv1, data["cord_" + (i + 1)][0][note1].sound);
 
+      noteDiv1.ontouchstart = (e) =>
+        makeTune(e, noteDiv1, data["cord_" + (i + 1)][0][note1].sound);
+
       // timeline
       let timeLineDiv1 = document.createElement("div");
       timeLineDiv1.className = "time-line";
@@ -111,6 +114,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
       semiNote1.onmousedown = (e) =>
         makeTune(e, semiNote1, data["cord_" + (i + 1)][1][note2].sound);
+      semiNote1.ontouchstart = (e) =>
+        makeTune(e, semiNote1, data["cord_" + (i + 1)][1][note2].sound);
 
       noteDiv1.append(semiNote1);
 
@@ -129,6 +134,8 @@ window.addEventListener("DOMContentLoaded", () => {
       `;
 
       noteDiv2.onmousedown = (e) =>
+        makeTune(e, noteDiv2, data["cord_" + (i + 1)][2][note3].sound);
+      noteDiv2.ontouchstart = (e) =>
         makeTune(e, noteDiv2, data["cord_" + (i + 1)][2][note3].sound);
 
       // timeline
@@ -156,6 +163,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
       semiNote2.onmousedown = (e) =>
         makeTune(e, semiNote2, data["cord_" + (i + 1)][3][note4].sound);
+      semiNote2.ontouchstart = (e) =>
+        makeTune(e, semiNote2, data["cord_" + (i + 1)][3][note4].sound);
 
       noteDiv2.append(semiNote2);
 
@@ -174,6 +183,8 @@ window.addEventListener("DOMContentLoaded", () => {
       `;
 
       noteDiv3.onmousedown = (e) =>
+        makeTune(e, noteDiv3, data["cord_" + (i + 1)][4][note5].sound);
+      noteDiv3.ontouchstart = (e) =>
         makeTune(e, noteDiv3, data["cord_" + (i + 1)][4][note5].sound);
 
       // timeline
@@ -201,6 +212,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
       noteDiv4.onmousedown = (e) =>
         makeTune(e, noteDiv4, data["cord_" + (i + 1)][5][note6].sound);
+      noteDiv4.ontouchstart = (e) =>
+        makeTune(e, noteDiv4, data["cord_" + (i + 1)][5][note6].sound);
 
       // timeline
       let timeLineDiv4 = document.createElement("div");
@@ -227,6 +240,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
       semiNote3.onmousedown = (e) =>
         makeTune(e, semiNote3, data["cord_" + (i + 1)][6][note7].sound);
+      semiNote3.ontouchstart = (e) =>
+        makeTune(e, semiNote3, data["cord_" + (i + 1)][6][note7].sound);
 
       noteDiv4.append(semiNote3);
 
@@ -245,6 +260,8 @@ window.addEventListener("DOMContentLoaded", () => {
       `;
 
       noteDiv5.onmousedown = (e) =>
+        makeTune(e, noteDiv5, data["cord_" + (i + 1)][7][note8].sound);
+      noteDiv5.ontouchstart = (e) =>
         makeTune(e, noteDiv5, data["cord_" + (i + 1)][7][note8].sound);
 
       // timeline
@@ -272,6 +289,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
       semiNote4.onmousedown = (e) =>
         makeTune(e, semiNote4, data["cord_" + (i + 1)][8][note9].sound);
+      semiNote4.ontouchstart = (e) =>
+        makeTune(e, semiNote4, data["cord_" + (i + 1)][8][note9].sound);
 
       noteDiv5.append(semiNote4);
 
@@ -290,6 +309,8 @@ window.addEventListener("DOMContentLoaded", () => {
       `;
 
       noteDiv6.onmousedown = (e) =>
+        makeTune(e, noteDiv6, data["cord_" + (i + 1)][9][note10].sound);
+      noteDiv6.ontouchstart = (e) =>
         makeTune(e, noteDiv6, data["cord_" + (i + 1)][9][note10].sound);
 
       // timeline
@@ -322,6 +343,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
       semiNote5.onmousedown = (e) =>
         makeTune(e, semiNote5, data["cord_" + (i + 1)][10][note11].sound);
+      semiNote5.ontouchstart = (e) =>
+        makeTune(e, semiNote5, data["cord_" + (i + 1)][10][note11].sound);
 
       noteDiv6.append(semiNote5);
 
@@ -343,6 +366,8 @@ window.addEventListener("DOMContentLoaded", () => {
       `;
 
       noteDiv7.onmousedown = (e) =>
+        makeTune(e, noteDiv7, data["cord_" + (i + 1)][11][note12].sound);
+      noteDiv7.ontouchstart = (e) =>
         makeTune(e, noteDiv7, data["cord_" + (i + 1)][11][note12].sound);
 
       // timeline
@@ -464,7 +489,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (e) {
       e.stopPropagation();
     }
-
+    
     swt.classList.add("active");
 
     if (audio) {
@@ -475,6 +500,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     swt.onmouseup = () => initialize(swt);
+    swt.ontouchend = () => initialize(swt);
   }
 
   function initialize(activeSwitch) {
@@ -484,7 +510,6 @@ window.addEventListener("DOMContentLoaded", () => {
   let customizeKeyModal = document.getElementById("customize-key-modal");
 
   window.addEventListener("keydown", (e) => {
-    
     if (!isAutoPlaying && !customizeKeyModal.classList.contains("active")) {
       if (activeKeys.has(e.key)) return;
       activeKeys.add(e.key);
@@ -607,7 +632,16 @@ window.addEventListener("DOMContentLoaded", () => {
     autoPlayTimeline.classList.remove("active");
   }
 
-  const colors = ['#D1E9F6', '#7FA1C3', '#B4E380','#F31559' ,'#F9E400', '#36BA98', '#9195F6','#FD5D5D'];
+  const colors = [
+    "#D1E9F6",
+    "#7FA1C3",
+    "#B4E380",
+    "#F31559",
+    "#F9E400",
+    "#36BA98",
+    "#9195F6",
+    "#FD5D5D",
+  ];
 
   autoPlayBtn.addEventListener("click", () => {
     chosenSong = allSongs(baseSpeed, baseCord)[chooseSong.value];
@@ -615,10 +649,10 @@ window.addEventListener("DOMContentLoaded", () => {
       removeInnerTimeline();
       autoPlayTimeline.classList.add("active");
       setTimeout(() => {
-
         allCord.classList.add("pointer-events-none");
 
         autoPlaySection.classList.add("playing");
+        allCord.classList.add("auto-play-active");
         isAutoPlaying = true;
 
         let autoPlayTimelineHeight = autoPlayTimeline.clientHeight;
@@ -628,7 +662,6 @@ window.addEventListener("DOMContentLoaded", () => {
         let timelineDuration = 2700;
 
         chosenSong.notes.forEach((el, i) => {
-
           const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
           let timelineDiv = document.querySelector(`.time-line-${el.octave}`);
@@ -639,7 +672,9 @@ window.addEventListener("DOMContentLoaded", () => {
           timelineDiv.append(timelineInner);
           timeLineInnerPush.push(timelineInner);
 
-          timelineInner.style.height = `${(el.stay ? el.stay : el.duration) / 10}px`;
+          timelineInner.style.height = `${
+            (el.stay ? el.stay : el.duration) / 10
+          }px`;
 
           timelineInner.style.bottom =
             autoPlayTimelineHeight + timelineDelay + "px";
@@ -656,19 +691,19 @@ window.addEventListener("DOMContentLoaded", () => {
 
           const timeout = setTimeout(() => {
             if (noteDiv || stayNodeDiv) {
-              if(el.stay){
+              if (el.stay) {
                 setTimeout(() => {
                   stayNodeDiv.onmouseup();
-                }, el.stay)
-              }else{
+                }, el.stay);
+              } else {
                 noteDiv.onmouseup();
               }
             }
 
-            if(el.stay){
+            if (el.stay) {
               stayNodeDiv = document.querySelector(`.${el.octave}`);
               stayNodeDiv.onmousedown();
-            }else{
+            } else {
               noteDiv = document.querySelector(`.${el.octave}`);
               noteDiv.onmousedown();
             }
@@ -683,7 +718,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         const finalTimeout = setTimeout(() => {
           if (noteDiv || stayNodeDiv) {
-            if(stayNodeDiv){
+            if (stayNodeDiv) {
               stayNodeDiv.onmouseup();
             }
             noteDiv.onmouseup();
@@ -692,6 +727,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
           autoPlaySection.classList.remove("playing");
           allCord.classList.remove("pointer-events-none");
+          allCord.classList.remove("auto-play-active");
+
           isAutoPlaying = false;
 
           songTimeline.style.transition = null;
@@ -722,6 +759,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     autoPlaySection.classList.remove("playing");
     allCord.classList.remove("pointer-events-none");
+    allCord.classList.remove("auto-play-active");
     isAutoPlaying = false;
 
     // Clear all timeouts
@@ -730,7 +768,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Ensure the current note is stopped
     if (noteDiv || stayNodeDiv) {
-      if(stayNodeDiv){
+      if (stayNodeDiv) {
         stayNodeDiv.onmouseup();
       }
       noteDiv.onmouseup();
@@ -807,16 +845,15 @@ window.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  playWithAutoPlay.addEventListener('click',()=>{
+  playWithAutoPlay.addEventListener("click", () => {
     isAutoPlaying = !isAutoPlaying;
-    playWithAutoPlay.classList.toggle('selected')
-    if(isAutoPlaying){
+    playWithAutoPlay.classList.toggle("selected");
+    if (isAutoPlaying) {
       // autoPlaySection.classList.add("playing");
       allCord.classList.add("pointer-events-none");
-    }else{
+    } else {
       // autoPlaySection.classList.remove("playing");
       allCord.classList.remove("pointer-events-none");
     }
-  })
+  });
 });
-
