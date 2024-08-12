@@ -4,6 +4,7 @@ window.addEventListener("DOMContentLoaded", () => {
   let baseCordValue = 3;
   let selectSpeedCord = document.querySelector("#select-speed-cord");
   let playWithAutoPlay = document.querySelector("#play-with-auto-play");
+  let isPlayWithSelected = false;
   let controlSpeed = document.getElementById("control-speed");
   let autoPlayTimeline = document.getElementById("auto-play-timeline");
   let autoPlayTimelineInner = document.getElementById(
@@ -645,15 +646,19 @@ window.addEventListener("DOMContentLoaded", () => {
 
   autoPlayBtn.addEventListener("click", () => {
     chosenSong = allSongs(baseSpeed, baseCord)[chooseSong.value];
-    if (chosenSong && !isAutoPlaying) {
+    if (chosenSong) {
       removeInnerTimeline();
       autoPlayTimeline.classList.add("active");
-      setTimeout(() => {
-        allCord.classList.add("pointer-events-none");
 
-        autoPlaySection.classList.add("playing");
-        allCord.classList.add("auto-play-active");
+      if (!isPlayWithSelected) {
+        allCord.classList.add("pointer-events-none");
         isAutoPlaying = true;
+      }
+
+      autoPlaySection.classList.add("playing");
+      allCord.classList.add("auto-play-active");
+
+      setTimeout(() => {
 
         let autoPlayTimelineHeight = autoPlayTimeline.clientHeight;
 
@@ -725,11 +730,13 @@ window.addEventListener("DOMContentLoaded", () => {
             removeInnerTimeline();
           }
 
-          autoPlaySection.classList.remove("playing");
           allCord.classList.remove("pointer-events-none");
-          allCord.classList.remove("auto-play-active");
-
+          playWithAutoPlay.classList.remove("selected");
           isAutoPlaying = false;
+          isPlayWithSelected = false;
+
+          autoPlaySection.classList.remove("playing");
+          allCord.classList.remove("auto-play-active");
 
           songTimeline.style.transition = null;
           songTimeline.style.width = "0%";
@@ -758,9 +765,12 @@ window.addEventListener("DOMContentLoaded", () => {
     songTimeline.style.width = "0%";
 
     autoPlaySection.classList.remove("playing");
-    allCord.classList.remove("pointer-events-none");
     allCord.classList.remove("auto-play-active");
+
+    allCord.classList.remove("pointer-events-none");
+    playWithAutoPlay.classList.remove("selected");
     isAutoPlaying = false;
+    isPlayWithSelected = false;
 
     // Clear all timeouts
     timeouts.forEach((timeout) => clearTimeout(timeout));
@@ -846,14 +856,15 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   playWithAutoPlay.addEventListener("click", () => {
-    isAutoPlaying = !isAutoPlaying;
     playWithAutoPlay.classList.toggle("selected");
-    if (isAutoPlaying) {
-      // autoPlaySection.classList.add("playing");
-      allCord.classList.add("pointer-events-none");
-    } else {
-      // autoPlaySection.classList.remove("playing");
+    isPlayWithSelected = !isPlayWithSelected;
+
+    if (isPlayWithSelected) {
       allCord.classList.remove("pointer-events-none");
+      isAutoPlaying = false;
+    } else {
+      isAutoPlaying = true;
+      allCord.classList.add("pointer-events-none");
     }
   });
 });
