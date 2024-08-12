@@ -11,7 +11,7 @@
   <script src="./src/js/songs/song.js"></script>
 </head>
 
-<body class="bg-gray-950 flex items-center min-h-screen">
+<body class="bg-gray-950 flex items-center min-h-screen font-16">
 
   <div id="page_loader"
     class="active [&.active]:flex hidden bg-black z-50 uppercase font-thin text-white fixed inset-0 justify-center items-center text-2xl">
@@ -79,7 +79,7 @@
               </button>
             </div>
             <div class="flex flex-wrap items-center gap-2">
-              <label class="text-white text-sm" for="volumeControl">
+              <label class="text-white font-16" for="volumeControl">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="size-5">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -123,14 +123,14 @@
               restrict with auto play
             </span>
           </button>
-            <div id="select-speed-cord" class="text-white relative hidden [&.active]:flex items-center gap-3">
-              <span>Speed</span> <input autocomplete="off" type="range" id="control-speed" class="slider" value="15"
+            <div id="select-speed-cord" class="text-white/80 relative hidden [&.active]:flex items-center gap-3">
+              <span class="font-16">Tempo</span> <input autocomplete="off" type="range" id="control-speed" class="slider" value="15"
                 min="10" max="30" placeholder="speed">
             </div>
            
             <div id="auto-play-section" class="text-white group/autoPlay flex flex-wrap gap-2 items-center">
               <button id="auto-play-btn"
-                class="rounded-md flex items-center justify-center h-[36px] aspect-square group-[.playing]/autoPlay:cursor-default group-[.playing]/autoPlay:bg-teal-700 bg-teal-600">
+                class="rounded-md flex items-center justify-center h-[36px] aspect-square group-[.playing]/autoPlay:cursor-default group-[.playing]/autoPlay:bg-teal-700 bg-primary">
                 <span class="group-[.playing]/autoPlay:hidden block">
                   <svg class="w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
                     stroke-width="1.5" stroke="currentColor">
@@ -148,7 +148,7 @@
                 </span>
               </button>
               <button id="auto-play-cancel-btn"
-                class="h-[36px] aspect-square rounded-md items-center justify-center group-[.playing]/autoPlay:scale-100 flex duration-300 scale-0 bg-teal-600">
+                class="h-[36px] aspect-square rounded-md items-center justify-center group-[.playing]/autoPlay:scale-100 flex duration-300 scale-0 bg-primary">
                 <svg class="w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
                   stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -175,11 +175,17 @@
     </div>
     <div class="piano relative">
       <div class="absolute -bottom-1 z-20 left-4 right-4 h-1">
-        <div id="song-timeline" class="h-full rounded-b-full bg-teal-600" style="width: 0%;"></div>
+        <div id="song-timeline" class="h-full rounded-b-full bg-primary" style="width: 0%;"></div>
       </div>
       <div class="rounded-b-2xl w-full overflow-x-scroll customScroll-none">
-        <div id="auto-play-timeline" class="h-0 [&.active]:h-timelineHeight overflow-hidden">
+        <div id="auto-play-timeline" class="relative h-0 [&.active]:h-timelineHeight overflow-hidden">
           <div id="auto-play-timeline-inner"></div>
+
+          <div class="octave-line left-[16.67%]"></div>
+          <div class="octave-line left-[33.33%]"></div>
+          <div class="octave-line left-[50%]"></div>
+          <div class="octave-line left-[66.67%]"></div>
+          <div class="octave-line left-[83.33%]"></div>
         </div>
         <div id="allCord" class="flex gap-0.5"></div>
       </div>
@@ -201,9 +207,9 @@
         <h2 class="text-xl 2xl:text-2xl text-center py-4">Customize key</h2>
       </div>
 
-      <div id="form-field" class="px-4 pb-1 text-sm space-y-6 2xl:space-y-8"></div>
+      <div id="form-field" class="px-4 pb-1 font-16 space-y-6 2xl:space-y-8"></div>
       <div class="px-4">
-        <p class="repeated-error-show text-sm text-red-500 empty-hidden"></p>
+        <p class="repeated-error-show font-16 text-red-500 empty-hidden"></p>
       </div>
       <div class="px-4 pt-6 2xl:pt-8 pb-4 2xl:pb-6 bg-gray-950 flex justify-end gap-1">
         <button type="button" id="reset-key-btn" class="key-btn-danger">Reset</button>

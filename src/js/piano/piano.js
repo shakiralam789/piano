@@ -501,7 +501,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     swt.onpointerup = () => initialize(swt);
-    // swt.ontouchend = () => initialize(swt);
+    swt.onpointerleave = () => initialize(swt);
   }
 
   function initialize(activeSwitch) {
@@ -661,10 +661,10 @@ window.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
 
         let autoPlayTimelineHeight = autoPlayTimeline.clientHeight;
-
-        let time = 2700;
+        let startTimeDelay = 2700
+        let time = startTimeDelay;
         let timelineDelay = 0;
-        let timelineDuration = 2700;
+        let timelineDuration = startTimeDelay;
 
         chosenSong.notes.forEach((el, i) => {
           const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -743,19 +743,19 @@ window.addEventListener("DOMContentLoaded", () => {
         }, time);
 
         timeouts.push(finalTimeout);
+
+        if (chosenSong) {
+          let timeArray = chosenSong.notes.map((el) => el.duration);
+          let sum = 0;
+    
+          timeArray.forEach((el) => {
+            sum += el;
+          });
+    
+          songTimeline.style.width = "100%";
+          songTimeline.style.transition = `all ${sum+startTimeDelay}ms linear`;
+        }
       }, 500);
-    }
-
-    if (chosenSong) {
-      let timeArray = chosenSong.notes.map((el) => el.duration);
-      let sum = 0;
-
-      timeArray.forEach((el) => {
-        sum += el;
-      });
-
-      songTimeline.style.width = "100%";
-      songTimeline.style.transition = `all ${sum}ms linear`;
     }
   });
 
@@ -863,8 +863,10 @@ window.addEventListener("DOMContentLoaded", () => {
       allCord.classList.remove("pointer-events-none");
       isAutoPlaying = false;
     } else {
-      isAutoPlaying = true;
-      allCord.classList.add("pointer-events-none");
+      if(allCord.classList.contains("auto-play-active")) {
+        isAutoPlaying = true;
+        allCord.classList.add("pointer-events-none");
+      }
     }
   });
 });

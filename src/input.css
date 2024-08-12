@@ -3,18 +3,47 @@
 @tailwind utilities;
 
 @layer components {
-  /* .container {
-    @apply mx-auto px-4 sm:px-6;
-  } */
+  .font-34 {
+    @apply text-lg xl:text-2xl 2xl:text-3xl;
+}
+
+.font-24 {
+    @apply text-base xl:text-xl 2xl:text-2xl;
+}
+
+.font-20 {
+    @apply text-sm xl:text-lg 2xl:text-xl;
+}
+
+.font-19 {
+    @apply text-sm xl:text-base 2xl:text-xl;
+}
+
+.font-18 {
+    @apply text-[13px] xl:text-sm 2xl:text-lg;
+}
+
+.font-16 {
+    @apply text-[11px] xl:text-[13px] 2xl:text-base;
+}
+
+.font-14 {
+    @apply text-[10px] xl:text-[11px] 2xl:text-sm;
+}
+
+.font-12 {
+    @apply text-[9px] xl:text-[10px] 2xl:text-xs;
+}
+
   .key-input {
     @apply h-9 2xl:h-11 w-full text-white block bg-transparent border border-gray-800 outline-none text-center;
   }
   .key-label {
-    @apply block text-xs text-white/70 capitalize;
+    @apply block font-14 text-white/70 capitalize;
   }
 
   .key-btn {
-    @apply px-4 py-2 2xl:py-2.5 rounded text-white min-w-fit text-xs 2xl:text-sm capitalize;
+    @apply px-4 py-2 2xl:py-2.5 rounded text-white min-w-fit font-16 capitalize;
   }
 
   .key-btn-primary {
@@ -25,11 +54,11 @@
   }
 
   .piano-btn {
-    @apply text-center px-4 py-1.5 capitalize rounded-md bg-[#474747] text-sm text-gray-200 duration-300 shadow-1;
+    @apply text-center px-4 py-1.5 capitalize rounded-md bg-[#474747] font-16 text-gray-200 duration-300 shadow-1;
   }
 
   .piano-input {
-    @apply px-4 py-1.5 capitalize rounded-md bg-[#474747] text-sm text-gray-200 duration-300 shadow-1;
+    @apply px-4 py-1.5 capitalize rounded-md bg-[#474747] font-16 text-gray-200 duration-300 shadow-1;
   }
 }
 
@@ -118,11 +147,10 @@ select {
 }
 
 #auto-play-timeline-inner .time-line .timeline-inner-sharp > div{
-  background: #F31559;
+  @apply bg-secondary;
   position: absolute;
   width: 100%;
   border-radius: 5px;
-  /* box-shadow: 0 0 10px #F31559; */
 }
 
 #auto-play-timeline-inner .time-line .timeline-inner-sharp > div::after{
@@ -142,7 +170,7 @@ select {
 }
 
 #auto-play-timeline-inner{
-  @apply flex items-end absolute bottom-0 left-0 right-0;
+  @apply flex justify-between gap-0.5 items-end absolute bottom-0 left-0 right-0;
   min-height: 100%;
 }
 
@@ -186,13 +214,13 @@ select {
 .semi-note-left.active,
 .semi-note-right.active,
 .semi-note-middle.active {
-  background: #F31559;
+  @apply bg-secondary;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.6),
     inset 0 2px 4px rgba(255, 255, 255, 0.2) !important;
 }
 
 .note.active {
-  @apply bg-teal-500;
+  @apply bg-primary;
 }
 
 /* #allCord.auto-play-active .note.active::after{
@@ -307,5 +335,14 @@ select {
 .slider::-moz-range-thumb {
   @apply bg-teal-400 size-[16px] rounded-full;
   cursor: pointer;
+}
+
+.octave-line{
+  /* background: rgba(128, 128, 128, 0.288); */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-50%);
 }
 
