@@ -46,7 +46,7 @@ window.addEventListener("DOMContentLoaded", () => {
         const soundFile = `./src/sounds/c${i + 1}/${note.replace(
           "_sharp",
           "s"
-        )}.wav`;
+        )}.mp3`;
 
         try {
           let response = await fetch(soundFile);
