@@ -38,6 +38,9 @@ window.addEventListener("DOMContentLoaded", () => {
   let count = 0;
 
   async function preloadAudio() {
+    const promises = [];
+    let count = 0;
+  
     for (let i = 0; i < pianoData.length; i++) {
       const el = pianoData[i]["cord_" + (i + 1)];
       for (let j = 0; j < el.length; j++) {
@@ -47,27 +50,38 @@ window.addEventListener("DOMContentLoaded", () => {
           "_sharp",
           "s"
         )}.mp3`;
-
-        try {
-          let response = await fetch(soundFile);
-          if (!response.ok) {
-            throw new Error(`Network response was not ok for ${soundFile}`);
-          }
-          let arrayBuffer = await response.arrayBuffer();
-          nt[note].sound = await audioContext.decodeAudioData(arrayBuffer);
-
-          count++;
-          if (loaderVar) {
-            loaderVar.style.width = `${
-              (count / (pianoData.length * 12)) * 100
-            }%`;
-          }
-        } catch (error) {
-          console.error("Error loading sound:", error);
-        }
+  
+        const promise = fetch(soundFile)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Network response was not ok for ${soundFile}`);
+            }
+            return response.arrayBuffer();
+          })
+          .then((arrayBuffer) => {
+            return audioContext.decodeAudioData(arrayBuffer).then((decodedData) => {
+              nt[note].sound = decodedData;
+            });
+          })
+          .catch((error) => {
+            console.error("Error loading sound:", error);
+          })
+          .finally(() => {
+            count++;
+            if (loaderVar) {
+              loaderVar.style.width = `${
+                (count / (pianoData.length * 12)) * 100
+              }%`;
+            }
+          });
+  
+        promises.push(promise);
       }
     }
+  
+    await Promise.all(promises);
   }
+  
 
   preloadAudio().then(() => {
     pianoData.forEach((data, i) => {
