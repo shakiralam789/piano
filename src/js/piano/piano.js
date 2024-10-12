@@ -35,12 +35,11 @@ window.addEventListener("DOMContentLoaded", () => {
     gainNode.gain.value = currentVolume;
   });
 
-  let count = 0;
-
   async function preloadAudio() {
     const promises = [];
     let count = 0;
-  
+    let audionFormate = "mp3";
+
     for (let i = 0; i < pianoData.length; i++) {
       const el = pianoData[i]["cord_" + (i + 1)];
       for (let j = 0; j < el.length; j++) {
@@ -49,8 +48,8 @@ window.addEventListener("DOMContentLoaded", () => {
         const soundFile = `./src/sounds/c${i + 1}/${note.replace(
           "_sharp",
           "s"
-        )}.mp3`;
-  
+        )}.${audionFormate}`;
+
         const promise = fetch(soundFile)
           .then((response) => {
             if (!response.ok) {
@@ -59,9 +58,11 @@ window.addEventListener("DOMContentLoaded", () => {
             return response.arrayBuffer();
           })
           .then((arrayBuffer) => {
-            return audioContext.decodeAudioData(arrayBuffer).then((decodedData) => {
-              nt[note].sound = decodedData;
-            });
+            return audioContext
+              .decodeAudioData(arrayBuffer)
+              .then((decodedData) => {
+                nt[note].sound = decodedData;
+              });
           })
           .catch((error) => {
             console.error("Error loading sound:", error);
@@ -74,14 +75,13 @@ window.addEventListener("DOMContentLoaded", () => {
               }%`;
             }
           });
-  
+
         promises.push(promise);
       }
     }
-  
+
     await Promise.all(promises);
   }
-  
 
   preloadAudio().then(() => {
     pianoData.forEach((data, i) => {
@@ -516,6 +516,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
     swt.onpointerup = () => initialize(swt);
     swt.onpointerleave = () => initialize(swt);
+
+    // Simulate playing a piano note
+    playPushNote(swt);
   }
 
   function initialize(activeSwitch) {
@@ -673,9 +676,8 @@ window.addEventListener("DOMContentLoaded", () => {
       allCord.classList.add("auto-play-active");
 
       setTimeout(() => {
-
         let autoPlayTimelineHeight = autoPlayTimeline.clientHeight;
-        let startTimeDelay = 2700
+        let startTimeDelay = 2700;
         let time = startTimeDelay;
         let timelineDelay = 0;
         let timelineDuration = startTimeDelay;
@@ -761,13 +763,15 @@ window.addEventListener("DOMContentLoaded", () => {
         if (chosenSong) {
           let timeArray = chosenSong.notes.map((el) => el.duration);
           let sum = 0;
-    
+
           timeArray.forEach((el) => {
             sum += el;
           });
-    
+
           songTimeline.style.width = "100%";
-          songTimeline.style.transition = `all ${sum+startTimeDelay}ms linear`;
+          songTimeline.style.transition = `all ${
+            sum + startTimeDelay
+          }ms linear`;
         }
       }, 500);
     }
@@ -877,10 +881,167 @@ window.addEventListener("DOMContentLoaded", () => {
       allCord.classList.remove("pointer-events-none");
       isAutoPlaying = false;
     } else {
-      if(allCord.classList.contains("auto-play-active")) {
+      if (allCord.classList.contains("auto-play-active")) {
         isAutoPlaying = true;
         allCord.classList.add("pointer-events-none");
       }
     }
+  });
+
+  const startRecordBtn = document.getElementById("start-record-btn");
+  const stopRecordBtn = document.getElementById("stop-record-btn");
+  const pauseRecordBtn = document.getElementById("pause-record-btn");
+  const playRecordedAudio = document.getElementById("play-recorded-audio");
+  const downloadRecordBtn = document.getElementById("download-record-btn");
+  const stopRecordingAudioBtn = document.getElementById(
+    "stop-recording-audio-btn"
+  );
+
+  let recording = false;
+  let paused = false;
+  let playRecorded = false;
+  let notesPlayed = [];
+  let playbackTimeouts = [];
+  let pauseStartTime = 0;
+  let totalPauseDuration = 0;
+
+  // Start recording
+  startRecordBtn.addEventListener("click", () => {
+    recording = true;
+    playRecorded = false;
+    paused = false;
+    totalPauseDuration = 0;
+    notesPlayed = [];
+    startRecordBtn.classList.add("hidden");
+    stopRecordBtn.classList.remove("hidden");
+    pauseRecordBtn.classList.remove("hidden");
+    playRecordedAudio.classList.add("hidden");
+    downloadRecordBtn.classList.add("hidden");
+    playRecordedAudio.classList.remove("playing");
+    stopRecordingAudioBtn.classList.add("hidden");
+    clearPreviousTimeouts();
+  });
+
+  // Stop recording
+  stopRecordBtn.addEventListener("click", () => {
+    recording = false;
+    startRecordBtn.classList.remove("hidden");
+    stopRecordBtn.classList.add("hidden");
+    pauseRecordBtn.classList.add("hidden");
+    pauseRecordBtn.classList.add("play");
+    pauseRecordBtn.classList.remove("pause");
+    playPauseFunc(pauseRecordBtn);
+    playRecordedAudio.classList.remove("hidden");
+    playRecordedAudio.classList.remove("playing");
+    stopRecordingAudioBtn.classList.add("hidden");
+    downloadRecordBtn.classList.remove("hidden");
+  });
+
+  stopRecordingAudioBtn.addEventListener("click", () => {
+    playRecordedAudio.classList.remove("playing");
+    stopRecordingAudioBtn.classList.add("hidden");
+    clearPreviousTimeouts();
+  });
+
+  // Pause and resume recording
+  pauseRecordBtn.addEventListener("click", () => {
+    if (recording) {
+      paused = true;
+      pauseStartTime = Date.now();
+      recording = false;
+    } else if (paused) {
+      const pauseEndTime = Date.now();
+      totalPauseDuration += pauseEndTime - pauseStartTime;
+      paused = false;
+      recording = true;
+    }
+  });
+
+  function playPushNote(note) {
+    if (recording) {
+      const time = Date.now() - totalPauseDuration;
+      const noteData = { note, time };
+      notesPlayed.push(noteData);
+    }
+  }
+
+  // Play a note (trigger)
+  function playNote(note) {
+    triggerNoteOn(note); // Trigger the note on
+  }
+
+  function clearPreviousTimeouts() {
+    if (playbackTimeouts.length > 0) {
+      playbackTimeouts.forEach((timeout) => clearTimeout(timeout));
+      playbackTimeouts = [];
+    }
+    notesPlayed?.forEach((noteData) => {
+      triggerNoteOff(noteData.note);
+    });
+  }
+
+  // Playback functionality
+  function playRecording() {
+    if (notesPlayed.length === 0 || recording) return;
+    playRecordedAudio.classList.add("playing");
+    stopRecordingAudioBtn.classList.remove("hidden");
+    // Clear any previous timeouts
+    clearPreviousTimeouts();
+
+    // Object to keep track of active notes
+    let activeNotes = {};
+
+    // Loop through notes and schedule playback
+    notesPlayed.forEach((noteData, i) => {
+      const delay = noteData.time - notesPlayed[0].time;
+
+      const nextNoteTime = notesPlayed[i + 1]?.time || noteData.time + 500;
+      const noteDuration = nextNoteTime - noteData.time;
+
+      // Play the note after the appropriate delay
+      const playbackTimeout = setTimeout(() => {
+        playNote(noteData.note);
+        activeNotes[noteData.note] = true;
+
+        // Turn off the current note after its own duration has passed
+        const noteOffTimeout = setTimeout(() => {
+          if (activeNotes[noteData.note]) {
+            triggerNoteOff(noteData.note);
+            delete activeNotes[noteData.note];
+          }
+        }, noteDuration);
+
+        playbackTimeouts.push(noteOffTimeout);
+
+        if (i === notesPlayed.length - 1) {
+          setTimeout(() => {
+            triggerNoteOff(notesPlayed[notesPlayed.length - 1]?.note);
+            playRecordedAudio.classList.remove("playing");
+            stopRecordingAudioBtn.classList.add("hidden");
+          }, 1000);
+        }
+      }, delay);
+
+      playbackTimeouts.push(playbackTimeout);
+    });
+  }
+
+  downloadRecordBtn.addEventListener("click", () => {
+    if (notesPlayed.length === 0) return;
+
+    const dataStr = JSON.stringify(notesPlayed, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "recording.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+  // Attach event listener for playback button
+  playRecordedAudio.addEventListener("click", () => {
+    playRecording();
   });
 });

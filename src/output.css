@@ -1180,6 +1180,11 @@ video {
   padding-bottom: 1.5rem;
 }
 
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
 .pb-1 {
   padding-bottom: 0.25rem;
 }
@@ -1678,6 +1683,20 @@ select {
   transform: translateX(-50%);
 }
 
+.fade {
+  animation: fade-in 300ms linear forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .group\/view.active .group-\[\.active\]\/view\:block {
   display: block;
 }
@@ -1793,4 +1812,3 @@ select {
 .\[\&\.active\]\:h-timelineHeight.active {
   height: 250px;
 }
-

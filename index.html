@@ -114,20 +114,19 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
               </svg>
             </div>
-            <button id="play-with-auto-play"
-            class="hidden group [&.active]:block piano-btn">
-            <span class="group-[.selected]:hidden">
-              play with auto play
-            </span>
-            <span class="group-[.selected]:block hidden">
-              restrict with auto play
-            </span>
-          </button>
+            <button id="play-with-auto-play" class="hidden group [&.active]:block piano-btn">
+              <span class="group-[.selected]:hidden">
+                play with auto play
+              </span>
+              <span class="group-[.selected]:block hidden">
+                restrict with auto play
+              </span>
+            </button>
             <div id="select-speed-cord" class="text-white/80 relative hidden [&.active]:flex items-center gap-3">
-              <span class="font-16">Tempo</span> <input autocomplete="off" type="range" id="control-speed" class="slider" value="15"
-                min="10" max="30" placeholder="speed">
+              <span class="font-16">Tempo</span> <input autocomplete="off" type="range" id="control-speed"
+                class="slider" value="15" min="10" max="30" placeholder="speed">
             </div>
-           
+
             <div id="auto-play-section" class="text-white group/autoPlay flex flex-wrap gap-2 items-center">
               <button id="auto-play-btn"
                 class="rounded-md flex items-center justify-center h-[36px] aspect-square group-[.playing]/autoPlay:cursor-default group-[.playing]/autoPlay:bg-teal-700 bg-primary">
@@ -159,15 +158,44 @@
             </div>
           </div>
           <div class="flex gap-2 items-center">
-            <!-- <button id="start-record-btn"
+            <button id="play-recorded-audio"
+              class="group/autoPlay hidden bg-[#474747] shadow-1 h-[36px] px-3 text-white rounded-md">
+              <span class="group-[.playing]/autoPlay:hidden">Play record</span>
+              <span class="h-[36px] group-[.playing]/autoPlay:flex items-center hidden">
+                <span class="sound-wave">
+                  <span class="wave"></span>
+                  <span class="wave"></span>
+                  <span class="wave"></span>
+                  <span class="wave"></span>
+                </span>
+              </span>
+            </button>
+            <button id="stop-recording-audio-btn"
+              class="hidden size-[36px] rounded-md items-center justify-center flex duration-300 bg-[#474747] shadow-1">
+              <span class="block size-3.5 bg-white"></span>
+            </button>
+            <button id="download-record-btn"
+              class="hidden bg-[#474747] shadow-1 size-[36px] flex items-center justify-center text-white rounded-md">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              </svg>
+            </button>
+            <button id="start-record-btn"
               class="size-[36px] rounded-md items-center justify-center flex duration-300 bg-[#474747] shadow-1">
               <span class="block size-3.5 rounded-full bg-red-500"></span>
             </button>
             <button id="stop-record-btn"
-              class="size-[36px] rounded-md items-center justify-center flex duration-300 bg-[#474747] shadow-1">
-              <span class="block size-3.5 rounded-full bg-red-500"></span>
+              class="hidden size-[36px] rounded-md items-center justify-center flex duration-300 bg-[#474747] shadow-1">
+              <span class="block size-3.5 bg-red-500"></span>
             </button>
-            <audio id="audioPlayback" controls></audio> -->
+            <button id="pause-record-btn"
+              class="hidden fade play size-[36px] rounded-md items-center justify-center flex bg-[#474747] shadow-1 gap-1">
+              <svg class="icon text-white" version="1.1" viewBox="0 0 36 36" fill="currentColor">
+                <path class="duration-300" d=""></path>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
@@ -245,7 +273,7 @@
     })
 
   </script>
-
+  <script src="./src/js/audioRecord.js"></script>
   <script src="./src/js/piano/piano.js"></script>
 </body>
 

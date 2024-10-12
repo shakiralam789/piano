@@ -346,3 +346,17 @@ select {
   transform: translateX(-50%);
 }
 
+
+.fade {
+  animation: fade-in 300ms linear forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
