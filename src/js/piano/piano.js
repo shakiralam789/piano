@@ -875,10 +875,10 @@ window.addEventListener("DOMContentLoaded", () => {
     return `
     <div data-index="${index}" class="group/tune tune-list-item border-b border-b-slate-700 last:border-b-0 flex items-center justify-between">
           <div>
-            <span class="group-[.rename]/tune:hidden">
+            <span class="tune-list-name group-[.rename]/tune:hidden">
               ${name}
             </span>
-            <input class="tune-list-input px-1 group-[.rename]/tune:block bg-slate-900 outline-none border-b-slate-700 hidden placeholder="Rename" type="text"/>
+            <input value="${name}" class="tune-list-input group-[.rename]/tune:block bg-slate-900 outline-none border-b-slate-700 hidden placeholder="Rename" type="text"/>
             <p class="text-slate-300">
               ${date}
             </p>
@@ -1003,7 +1003,7 @@ window.addEventListener("DOMContentLoaded", () => {
       ];
     }
 
-    if(notesPlayed.length > 0) {
+    if (notesPlayed.length > 0) {
       localStorage.setItem("notesPlayed", JSON.stringify(localNotes));
       buildTuneList(JSON.stringify(localNotes));
     }
@@ -1086,20 +1086,30 @@ window.addEventListener("DOMContentLoaded", () => {
       if (tuneListItem) {
         tuneListItem.classList.add("rename");
         let tuneInput = tuneListItem.querySelector(".tune-list-input");
-        tuneInput.focus();
+        tuneInput.select();
       }
     }
 
-    if(e.target.closest(".tune-list-save-btn")) {
+    if (e.target.closest(".tune-list-save-btn")) {
       let tuneListItem = e.target.closest(".tune-list-item");
-      if(tuneListItem) {
+
+      if (
+        tuneListItem &&
+        tuneListItem.querySelector(".tune-list-input").value.trim() !== ""
+      ) {
         let localNotes = localStorage.getItem("notesPlayed");
-        if(localNotes) {
+        let tuneListName = tuneListItem.querySelector(".tune-list-name");
+        if (localNotes) {
           let newNotes = JSON.parse(localNotes);
-          if(Array.isArray(newNotes)) {
-            newNotes[tuneListItem.getAttribute("data-index")].name = tuneListItem.querySelector(".tune-list-input").value;
+          if (Array.isArray(newNotes)) {
+            newNotes[tuneListItem.getAttribute("data-index")].name =
+              tuneListItem.querySelector(".tune-list-input").value;
             localStorage.setItem("notesPlayed", JSON.stringify(newNotes));
-            buildTuneList(JSON.stringify(newNotes));
+            tuneListName.innerHTML =
+              tuneListItem.querySelector(".tune-list-input").value;
+            tuneListItem.classList.remove("rename");
+
+            // buildTuneList(JSON.stringify(newNotes));
           }
         }
       }

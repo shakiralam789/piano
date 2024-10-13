@@ -360,3 +360,7 @@ select {
     opacity: 1;
   }
 }
+
+input::selection {
+  @apply bg-primary text-white;
+}

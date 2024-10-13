@@ -834,14 +834,6 @@ video {
   margin-top: 0.5rem;
 }
 
-.mb-1 {
-  margin-bottom: 0.25rem;
-}
-
-.mb-1\.5 {
-  margin-bottom: 0.375rem;
-}
-
 .block {
   display: block;
 }
@@ -1130,11 +1122,6 @@ video {
   border-bottom-color: rgb(51 65 85 / var(--tw-border-opacity));
 }
 
-.border-b-slate-50 {
-  --tw-border-opacity: 1;
-  border-bottom-color: rgb(248 250 252 / var(--tw-border-opacity));
-}
-
 .bg-\[\#474747\] {
   --tw-bg-opacity: 1;
   background-color: rgb(71 71 71 / var(--tw-bg-opacity));
@@ -1173,27 +1160,22 @@ video {
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-transparent {
-  background-color: transparent;
-}
-
-.bg-slate-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
-}
-
 .bg-slate-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
 }
 
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-95 {
   --tw-bg-opacity: 0.95;
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 .p-4 {
@@ -1204,8 +1186,9 @@ video {
   padding: 1.5rem;
 }
 
-.p-0 {
-  padding: 0px;
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .px-3 {
@@ -1231,36 +1214,6 @@ video {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-}
-
-.px-1 {
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-}
-
-.px-1\.5 {
-  padding-left: 0.375rem;
-  padding-right: 0.375rem;
-}
-
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
-.py-1\.5 {
-  padding-top: 0.375rem;
-  padding-bottom: 0.375rem;
-}
-
-.py-0 {
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-.py-0\.5 {
-  padding-top: 0.125rem;
-  padding-bottom: 0.125rem;
 }
 
 .pb-1 {
@@ -1790,6 +1743,20 @@ select {
   }
 }
 
+input::-moz-selection {
+  --tw-bg-opacity: 1;
+  background-color: rgb(13 148 136 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+input::selection {
+  --tw-bg-opacity: 1;
+  background-color: rgb(13 148 136 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .\*\:py-2 > * {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1803,23 +1770,15 @@ select {
   pointer-events: none;
 }
 
-.group\/tune.rename .group-\[\.rename\]\/tune\:pointer-events-none {
-  pointer-events: none;
-}
-
 .group\/view.active .group-\[\.active\]\/view\:block {
   display: block;
 }
 
-.group.selected .group-\[\.selected\]\:block {
-  display: block;
-}
-
-.group\/tune.active .group-\[\.active\]\/tune\:block {
-  display: block;
-}
-
 .group\/tune.rename .group-\[\.rename\]\/tune\:block {
+  display: block;
+}
+
+.group.selected .group-\[\.selected\]\:block {
   display: block;
 }
 
@@ -1851,11 +1810,11 @@ select {
   display: none;
 }
 
-.group.selected .group-\[\.selected\]\:hidden {
+.group\/tune.rename .group-\[\.rename\]\/tune\:hidden {
   display: none;
 }
 
-.group\/tune.rename .group-\[\.rename\]\/tune\:hidden {
+.group.selected .group-\[\.selected\]\:hidden {
   display: none;
 }
 
