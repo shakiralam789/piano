@@ -91,6 +91,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 1
       //   c
       let noteDiv1 = document.createElement("div");
+      noteDiv1.id = `c${i + 1}_${note1}`;
       noteDiv1.className = `switch note c${i + 1}_${note1}`;
       noteDiv1.setAttribute("data-key", data["cord_" + (i + 1)][0][note1].key);
       noteDiv1.innerHTML = `
@@ -100,9 +101,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       noteDiv1.onpointerdown = (e) =>
         makeTune(e, noteDiv1, data["cord_" + (i + 1)][0][note1].sound);
-
-      // noteDiv1.ontouchstart = (e) =>
-      //   makeTune(e, noteDiv1, data["cord_" + (i + 1)][0][note1].sound);
 
       // timeline
       let timeLineDiv1 = document.createElement("div");
@@ -118,6 +116,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       //   c#
       let semiNote1 = document.createElement("div");
+      semiNote1.id = `c${i + 1}_${note2}`;
       semiNote1.className = `switch semi-note-left c${i + 1}_${note2}`;
       semiNote1.setAttribute("data-key", data["cord_" + (i + 1)][1][note2].key);
       semiNote1.innerHTML = `<span class="notes-name">${note2.replace(
@@ -129,9 +128,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       semiNote1.onpointerdown = (e) =>
         makeTune(e, semiNote1, data["cord_" + (i + 1)][1][note2].sound);
-      // semiNote1.ontouchstart = (e) =>
-      //   makeTune(e, semiNote1, data["cord_" + (i + 1)][1][note2].sound);
-
       noteDiv1.append(semiNote1);
 
       cord.append(noteDiv1);
@@ -139,6 +135,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 2
       // d
       let noteDiv2 = document.createElement("div");
+      noteDiv2.id = `c${i + 1}_${note3}`;
       noteDiv2.className = `switch note c${i + 1}_${note3}`;
       noteDiv2.setAttribute("data-key", data["cord_" + (i + 1)][2][note3].key);
       noteDiv2.innerHTML = `<span class="notes-name">${note3.replace(
@@ -150,9 +147,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       noteDiv2.onpointerdown = (e) =>
         makeTune(e, noteDiv2, data["cord_" + (i + 1)][2][note3].sound);
-      // noteDiv2.ontouchstart = (e) =>
-      //   makeTune(e, noteDiv2, data["cord_" + (i + 1)][2][note3].sound);
-
       // timeline
       let timeLineDiv2 = document.createElement("div");
       timeLineDiv2.className = "time-line";
@@ -167,6 +161,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       //   d#
       let semiNote2 = document.createElement("div");
+      semiNote2.id = `c${i + 1}_${note4}`;
       semiNote2.className = `switch semi-note-right c${i + 1}_${note4}`;
       semiNote2.setAttribute("data-key", data["cord_" + (i + 1)][3][note4].key);
       semiNote2.innerHTML = `<span class="notes-name">${note4.replace(
@@ -178,9 +173,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       semiNote2.onpointerdown = (e) =>
         makeTune(e, semiNote2, data["cord_" + (i + 1)][3][note4].sound);
-      // semiNote2.ontouchstart = (e) =>
-      //   makeTune(e, semiNote2, data["cord_" + (i + 1)][3][note4].sound);
-
       noteDiv2.append(semiNote2);
 
       cord.append(noteDiv2);
@@ -188,6 +180,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 3
       //  e
       let noteDiv3 = document.createElement("div");
+      noteDiv3.id = `c${i + 1}_${note5}`;
       noteDiv3.className = `switch note c${i + 1}_${note5}`;
       noteDiv3.setAttribute("data-key", data["cord_" + (i + 1)][4][note5].key);
       noteDiv3.innerHTML = `<span class="notes-name">${note5.replace(
@@ -199,8 +192,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       noteDiv3.onpointerdown = (e) =>
         makeTune(e, noteDiv3, data["cord_" + (i + 1)][4][note5].sound);
-      // noteDiv3.ontouchstart = (e) =>
-      //   makeTune(e, noteDiv3, data["cord_" + (i + 1)][4][note5].sound);
 
       // timeline
       let timeLineDiv3 = document.createElement("div");
@@ -216,6 +207,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 4
       //  f
       let noteDiv4 = document.createElement("div");
+      noteDiv4.id = `c${i + 1}_${note6}`;
       noteDiv4.className = `switch note c${i + 1}_${note6}`;
       noteDiv4.setAttribute("data-key", data["cord_" + (i + 1)][5][note6].key);
       noteDiv4.innerHTML = `<span class="notes-name">${note6.replace(
@@ -227,9 +219,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       noteDiv4.onpointerdown = (e) =>
         makeTune(e, noteDiv4, data["cord_" + (i + 1)][5][note6].sound);
-      // noteDiv4.ontouchstart = (e) =>
-      //   makeTune(e, noteDiv4, data["cord_" + (i + 1)][5][note6].sound);
-
       // timeline
       let timeLineDiv4 = document.createElement("div");
       timeLineDiv4.className = "time-line";
@@ -244,6 +233,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       // f#
       let semiNote3 = document.createElement("div");
+      semiNote3.id = `c${i + 1}_${note7}`;
       semiNote3.className = `switch semi-note-left c${i + 1}_${note7}`;
       semiNote3.setAttribute("data-key", data["cord_" + (i + 1)][6][note7].key);
       semiNote3.innerHTML = `<span class="notes-name">${note7.replace(
@@ -255,8 +245,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       semiNote3.onpointerdown = (e) =>
         makeTune(e, semiNote3, data["cord_" + (i + 1)][6][note7].sound);
-      // semiNote3.ontouchstart = (e) =>
-      //   makeTune(e, semiNote3, data["cord_" + (i + 1)][6][note7].sound);
 
       noteDiv4.append(semiNote3);
 
@@ -265,6 +253,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 5
       //   g
       let noteDiv5 = document.createElement("div");
+      noteDiv5.id = `c${i + 1}_${note8}`;
       noteDiv5.className = `switch note c${i + 1}_${note8}`;
       noteDiv5.setAttribute("data-key", data["cord_" + (i + 1)][7][note8].key);
       noteDiv5.innerHTML = `<span class="notes-name">${note8.replace(
@@ -276,9 +265,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       noteDiv5.onpointerdown = (e) =>
         makeTune(e, noteDiv5, data["cord_" + (i + 1)][7][note8].sound);
-      // noteDiv5.ontouchstart = (e) =>
-      //   makeTune(e, noteDiv5, data["cord_" + (i + 1)][7][note8].sound);
-
       // timeline
       let timeLineDiv6 = document.createElement("div");
       timeLineDiv6.className = "time-line";
@@ -293,6 +279,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       //   g#
       let semiNote4 = document.createElement("div");
+      semiNote4.id = `c${i + 1}_${note9}`;
       semiNote4.className = `switch semi-note-middle c${i + 1}_${note9}`;
       semiNote4.setAttribute("data-key", data["cord_" + (i + 1)][8][note9].key);
       semiNote4.innerHTML = `<span class="notes-name">${note9.replace(
@@ -304,9 +291,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       semiNote4.onpointerdown = (e) =>
         makeTune(e, semiNote4, data["cord_" + (i + 1)][8][note9].sound);
-      // semiNote4.ontouchstart = (e) =>
-      //   makeTune(e, semiNote4, data["cord_" + (i + 1)][8][note9].sound);
-
       noteDiv5.append(semiNote4);
 
       cord.append(noteDiv5);
@@ -314,6 +298,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 6
       //  a
       let noteDiv6 = document.createElement("div");
+      noteDiv6.id = `c${i + 1}_${note10}`;
       noteDiv6.className = `switch note c${i + 1}_${note10}`;
       noteDiv6.setAttribute("data-key", data["cord_" + (i + 1)][9][note10].key);
       noteDiv6.innerHTML = `<span class="notes-name">${note10.replace(
@@ -325,9 +310,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       noteDiv6.onpointerdown = (e) =>
         makeTune(e, noteDiv6, data["cord_" + (i + 1)][9][note10].sound);
-      // noteDiv6.ontouchstart = (e) =>
-      //   makeTune(e, noteDiv6, data["cord_" + (i + 1)][9][note10].sound);
-
       // timeline
       let timeLineDiv7 = document.createElement("div");
       timeLineDiv7.className = "time-line";
@@ -344,6 +326,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       //   sa
       let semiNote5 = document.createElement("div");
+      semiNote5.id = `c${i + 1}_${note11}`;
       semiNote5.className = `switch semi-note-right c${i + 1}_${note11}`;
       semiNote5.setAttribute(
         "data-key",
@@ -358,9 +341,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       semiNote5.onpointerdown = (e) =>
         makeTune(e, semiNote5, data["cord_" + (i + 1)][10][note11].sound);
-      // semiNote5.ontouchstart = (e) =>
-      //   makeTune(e, semiNote5, data["cord_" + (i + 1)][10][note11].sound);
-
       noteDiv6.append(semiNote5);
 
       cord.append(noteDiv6);
@@ -368,6 +348,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 7
       //  b
       let noteDiv7 = document.createElement("div");
+      noteDiv7.id = `c${i + 1}_${note12}`;
       noteDiv7.className = `switch note c${i + 1}_${note12}`;
       noteDiv7.setAttribute(
         "data-key",
@@ -382,9 +363,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       noteDiv7.onpointerdown = (e) =>
         makeTune(e, noteDiv7, data["cord_" + (i + 1)][11][note12].sound);
-      // noteDiv7.ontouchstart = (e) =>
-      //   makeTune(e, noteDiv7, data["cord_" + (i + 1)][11][note12].sound);
-
       // timeline
       let timeLineDiv8 = document.createElement("div");
       timeLineDiv8.className = "time-line";
@@ -888,20 +866,26 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  const chooseMyTuneSelect = document.getElementById("choose-my-tune");
   const startRecordBtn = document.getElementById("start-record-btn");
   const stopRecordBtn = document.getElementById("stop-record-btn");
   const pauseRecordBtn = document.getElementById("pause-record-btn");
   const playRecordedAudio = document.getElementById("play-recorded-audio");
-  const downloadRecordBtn = document.getElementById("download-record-btn");
+  // const downloadRecordBtn = document.getElementById("download-record-btn");
   const stopRecordingAudioBtn = document.getElementById(
     "stop-recording-audio-btn"
   );
+
+  let localNotes = localStorage.getItem("notesPlayed");
+
+  buildOption(localNotes);
 
   let recording = false;
   let paused = false;
   let playRecorded = false;
   let notesPlayed = [];
   let playbackTimeouts = [];
+  let isPlaying = false;
   let pauseStartTime = 0;
   let totalPauseDuration = 0;
 
@@ -916,7 +900,7 @@ window.addEventListener("DOMContentLoaded", () => {
     stopRecordBtn.classList.remove("hidden");
     pauseRecordBtn.classList.remove("hidden");
     playRecordedAudio.classList.add("hidden");
-    downloadRecordBtn.classList.add("hidden");
+    // downloadRecordBtn.classList.add("hidden");
     playRecordedAudio.classList.remove("playing");
     stopRecordingAudioBtn.classList.add("hidden");
     clearPreviousTimeouts();
@@ -934,12 +918,75 @@ window.addEventListener("DOMContentLoaded", () => {
     playRecordedAudio.classList.remove("hidden");
     playRecordedAudio.classList.remove("playing");
     stopRecordingAudioBtn.classList.add("hidden");
-    downloadRecordBtn.classList.remove("hidden");
+    // downloadRecordBtn.classList.remove("hidden");
+
+    // Save the notes
+    let localNotes = localStorage.getItem("notesPlayed");
+    if (localNotes) {
+      localNotes = JSON.parse(localNotes);
+      localNotes = [
+        {
+          name: `Tune ${formatDate()}`,
+          notes: JSON.stringify(notesPlayed),
+        },
+        ...localNotes,
+      ];
+    } else {
+      localNotes = [
+        {
+          name: `Tune ${formatDate()}`,
+          notes: JSON.stringify(notesPlayed),
+        },
+      ];
+    }
+
+    localStorage.setItem("notesPlayed", JSON.stringify(localNotes));
+    buildOption(JSON.stringify(localNotes));
+  });
+
+  function buildOption(notes) {
+    if (notes) {
+      let newNotes = JSON.parse(notes);
+      if (Array.isArray(newNotes)) {
+        let newOptions = newNotes.map((el, i) => {
+          return `<option value="${i}">${el.name}</option>`;
+        });
+        chooseMyTuneSelect.innerHTML = `
+        <option>Select tune</option>
+        ${newOptions.join("")}
+        `;
+      }
+    }
+  }
+
+  chooseMyTuneSelect.addEventListener("change", (e) => {
+    let localNotes = localStorage.getItem("notesPlayed");
+    stopRecordingAudioBtn.click();
+
+    if (localNotes) {
+      let newNotes = JSON.parse(localNotes);
+      if (Array.isArray(newNotes)) {
+        if (
+          +chooseMyTuneSelect.value + 1 &&
+          +chooseMyTuneSelect.value + 1 > 0 &&
+          +chooseMyTuneSelect.value < newNotes.length
+        ) {
+          notesPlayed = JSON.parse(newNotes[e.target.value].notes);
+          playRecordedAudio.classList.remove("hidden");
+          playRecorded = true;
+        } else {
+          playRecordedAudio.classList.add("hidden");
+          playRecorded = false;
+          notesPlayed = [];
+        }
+      }
+    }
   });
 
   stopRecordingAudioBtn.addEventListener("click", () => {
     playRecordedAudio.classList.remove("playing");
     stopRecordingAudioBtn.classList.add("hidden");
+    isPlaying = false;
     clearPreviousTimeouts();
   });
 
@@ -959,15 +1006,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function playPushNote(note) {
     if (recording) {
+      note = note.id;
       const time = Date.now() - totalPauseDuration;
-      const noteData = { note, time };
+      const noteData = { note: note, time };
       notesPlayed.push(noteData);
     }
   }
 
   // Play a note (trigger)
   function playNote(note) {
-    triggerNoteOn(note); // Trigger the note on
+    let noteDiv = document.getElementById(note.id);
+    triggerNoteOn(noteDiv);
   }
 
   function clearPreviousTimeouts() {
@@ -976,13 +1025,15 @@ window.addEventListener("DOMContentLoaded", () => {
       playbackTimeouts = [];
     }
     notesPlayed?.forEach((noteData) => {
-      triggerNoteOff(noteData.note);
+      let noteDataDiv = document.getElementById(noteData.note);
+      triggerNoteOff(noteDataDiv);
     });
   }
 
   // Playback functionality
   function playRecording() {
     if (notesPlayed.length === 0 || recording) return;
+    isPlaying = true;
     playRecordedAudio.classList.add("playing");
     stopRecordingAudioBtn.classList.remove("hidden");
     // Clear any previous timeouts
@@ -1000,14 +1051,16 @@ window.addEventListener("DOMContentLoaded", () => {
 
       // Play the note after the appropriate delay
       const playbackTimeout = setTimeout(() => {
-        playNote(noteData.note);
-        activeNotes[noteData.note] = true;
+        let noteDiv = document.getElementById(noteData.note);
+
+        playNote(noteDiv);
+        activeNotes[noteDiv] = true;
 
         // Turn off the current note after its own duration has passed
         const noteOffTimeout = setTimeout(() => {
-          if (activeNotes[noteData.note]) {
-            triggerNoteOff(noteData.note);
-            delete activeNotes[noteData.note];
+          if (activeNotes[noteDiv]) {
+            triggerNoteOff(noteDiv);
+            delete activeNotes[noteDiv];
           }
         }, noteDuration);
 
@@ -1015,7 +1068,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
         if (i === notesPlayed.length - 1) {
           setTimeout(() => {
-            triggerNoteOff(notesPlayed[notesPlayed.length - 1]?.note);
+            let lastNote = document.getElementById(
+              notesPlayed[notesPlayed.length - 1]?.note
+            );
+            triggerNoteOff(lastNote);
             playRecordedAudio.classList.remove("playing");
             stopRecordingAudioBtn.classList.add("hidden");
           }, 1000);
@@ -1026,20 +1082,20 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  downloadRecordBtn.addEventListener("click", () => {
-    if (notesPlayed.length === 0) return;
+  // downloadRecordBtn.addEventListener("click", () => {
+  //   if (notesPlayed.length === 0) return;
 
-    const dataStr = JSON.stringify(notesPlayed, null, 2);
-    const blob = new Blob([dataStr], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "recording.json";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  });
+  //   const dataStr = JSON.stringify(notesPlayed, null, 2);
+  //   const blob = new Blob([dataStr], { type: "application/json" });
+  //   const url = URL.createObjectURL(blob);
+  //   const a = document.createElement("a");
+  //   a.href = url;
+  //   a.download = "recording.json";
+  //   document.body.appendChild(a);
+  //   a.click();
+  //   document.body.removeChild(a);
+  //   URL.revokeObjectURL(url);
+  // });
   // Attach event listener for playback button
   playRecordedAudio.addEventListener("click", () => {
     playRecording();

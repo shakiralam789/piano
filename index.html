@@ -158,6 +158,17 @@
             </div>
           </div>
           <div class="flex gap-2 items-center">
+            <div class="relative">
+              <select autocomplete="off" id="choose-my-tune"
+                class="pr-8 cursor-pointer appearance-none piano-btn py-2 text-left" name="" id="">
+                <option value="">Select song</option>
+              </select>
+              <svg class="w-4 pointer-events-none text-white absolute top-1/2 -translate-y-1/2 right-3"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </div>
             <button id="play-recorded-audio"
               class="group/autoPlay hidden bg-[#474747] shadow-1 h-[36px] px-3 text-white rounded-md">
               <span class="group-[.playing]/autoPlay:hidden">Play record</span>
@@ -174,14 +185,14 @@
               class="hidden size-[36px] rounded-md items-center justify-center flex duration-300 bg-[#474747] shadow-1">
               <span class="block size-3.5 bg-white"></span>
             </button>
-            <button id="download-record-btn"
+            <!-- <button id="download-record-btn"
               class="hidden bg-[#474747] shadow-1 size-[36px] flex items-center justify-center text-white rounded-md">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="size-5">
                 <path stroke-linecap="round" stroke-linejoin="round"
                   d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
               </svg>
-            </button>
+            </button> -->
             <button id="start-record-btn"
               class="size-[36px] rounded-md items-center justify-center flex duration-300 bg-[#474747] shadow-1">
               <span class="block size-3.5 rounded-full bg-red-500"></span>
@@ -248,6 +259,7 @@
 
     </div>
   </div>
+  <script src="./src/js/utilities.js"></script>
   <script src="./src/js/needfullFunc.js"></script>
   <script src="./src/js/piano/buildFormField.js"></script>
   <script src="./src/js/anyToggle.js"></script>
