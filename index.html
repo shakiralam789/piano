@@ -95,7 +95,7 @@
           <div class="flex flex-wrap items-center gap-2">
             <div class="relative">
               <select autocomplete="off" id="choose-song"
-                class="pr-8 cursor-pointer appearance-none piano-btn py-2 text-left" name="" id="">
+                class="pr-8 cursor-pointer appearance-none piano-btn text-left" name="" id="">
                 <option value="">Select song</option>
               </select>
               <svg class="w-4 pointer-events-none text-white absolute top-1/2 -translate-y-1/2 right-3"
@@ -129,7 +129,7 @@
 
             <div id="auto-play-section" class="text-white group/autoPlay flex flex-wrap gap-2 items-center">
               <button id="auto-play-btn"
-                class="rounded-md flex items-center justify-center h-[36px] aspect-square group-[.playing]/autoPlay:cursor-default group-[.playing]/autoPlay:bg-teal-700 bg-primary">
+                class="rounded-md flex items-center justify-center h-[32px] aspect-square group-[.playing]/autoPlay:cursor-default group-[.playing]/autoPlay:bg-teal-700 bg-primary">
                 <span class="group-[.playing]/autoPlay:hidden block">
                   <svg class="w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
                     stroke-width="1.5" stroke="currentColor">
@@ -137,7 +137,7 @@
                       d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
                   </svg>
                 </span>
-                <span class="h-[36px] group-[.playing]/autoPlay:flex items-center hidden">
+                <span class="h-[32px] group-[.playing]/autoPlay:flex items-center hidden">
                   <span class="sound-wave">
                     <span class="wave"></span>
                     <span class="wave"></span>
@@ -147,7 +147,7 @@
                 </span>
               </button>
               <button id="auto-play-cancel-btn"
-                class="h-[36px] aspect-square rounded-md items-center justify-center group-[.playing]/autoPlay:scale-100 flex duration-300 scale-0 bg-primary">
+                class="h-[32px] aspect-square rounded-md items-center justify-center group-[.playing]/autoPlay:scale-100 flex duration-300 scale-0 bg-primary">
                 <svg class="w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
                   stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -158,21 +158,16 @@
             </div>
           </div>
           <div class="flex gap-2 items-center">
-            <div class="relative">
-              <select autocomplete="off" id="choose-my-tune"
-                class="pr-8 cursor-pointer appearance-none piano-btn py-2 text-left" name="" id="">
-                <option value="">Select song</option>
-              </select>
-              <svg class="w-4 pointer-events-none text-white absolute top-1/2 -translate-y-1/2 right-3"
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            <button class="piano-btn p-0 size-[32px] flex items-center justify-center" data-outsideclick="true" data-name="first" data-role="header"
+              data-group="tune">
+              <svg class="size-4" fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                  d="M40 48C26.7 48 16 58.7 16 72l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24L40 48zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L192 64zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l288 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-288 0zM16 232l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24l-48 0c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24l0 48c0 13.3 10.7 24 24 24l48 0c13.3 0 24-10.7 24-24l0-48c0-13.3-10.7-24-24-24l-48 0z" />
               </svg>
-            </div>
+            </button>
             <button id="play-recorded-audio"
-              class="group/autoPlay hidden bg-[#474747] shadow-1 h-[36px] px-3 text-white rounded-md">
-              <span class="group-[.playing]/autoPlay:hidden">Play record</span>
-              <span class="h-[36px] group-[.playing]/autoPlay:flex items-center hidden">
+              class="group/autoPlay [&.playing]:block hidden bg-[#474747] shadow-1 h-[32px] px-3 text-white rounded-md">
+              <span class="h-[32px] flex items-center">
                 <span class="sound-wave">
                   <span class="wave"></span>
                   <span class="wave"></span>
@@ -182,11 +177,11 @@
               </span>
             </button>
             <button id="stop-recording-audio-btn"
-              class="hidden size-[36px] rounded-md items-center justify-center flex duration-300 bg-[#474747] shadow-1">
+              class="hidden size-[32px] rounded-md items-center justify-center flex duration-300 bg-[#474747] shadow-1">
               <span class="block size-3.5 bg-white"></span>
             </button>
             <!-- <button id="download-record-btn"
-              class="hidden bg-[#474747] shadow-1 size-[36px] flex items-center justify-center text-white rounded-md">
+              class="hidden bg-[#474747] shadow-1 size-[32px] flex items-center justify-center text-white rounded-md">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="size-5">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -194,15 +189,15 @@
               </svg>
             </button> -->
             <button id="start-record-btn"
-              class="size-[36px] rounded-md items-center justify-center flex duration-300 bg-[#474747] shadow-1">
+              class="size-[32px] rounded-md items-center justify-center flex duration-300 bg-[#474747] shadow-1">
               <span class="block size-3.5 rounded-full bg-red-500"></span>
             </button>
             <button id="stop-record-btn"
-              class="hidden size-[36px] rounded-md items-center justify-center flex duration-300 bg-[#474747] shadow-1">
+              class="hidden size-[32px] rounded-md items-center justify-center flex duration-300 bg-[#474747] shadow-1">
               <span class="block size-3.5 bg-red-500"></span>
             </button>
             <button id="pause-record-btn"
-              class="hidden fade play size-[36px] rounded-md items-center justify-center flex bg-[#474747] shadow-1 gap-1">
+              class="hidden fade play size-[32px] rounded-md items-center justify-center flex bg-[#474747] shadow-1 gap-1">
               <svg class="icon text-white" version="1.1" viewBox="0 0 36 36" fill="currentColor">
                 <path class="duration-300" d=""></path>
               </svg>
@@ -230,6 +225,8 @@
       </div>
     </div>
   </div>
+
+  <!-- customize ket modal -->
   <div
     class="px-4 has-[.modal.active]:pointer-events-auto has-[.modal.active]:opacity-100 pointer-events-none flex opacity-0 duration-500 fixed top-0 left-0 z-30 w-full bg-black/80 h-screen overflow-y-auto items-center justify-center">
     <form autocomplete="off" id="customize-key-modal" data-name="first" data-role="content" data-group="modal"
@@ -255,6 +252,30 @@
         <button type="button" id="submit-key-btn" class="key-btn-primary">submit</button>
       </div>
     </form>
+    <div>
+
+    </div>
+  </div>
+
+  <!-- tune modal -->
+  <div
+    class="px-4 has-[.modal.active]:pointer-events-auto has-[.modal.active]:opacity-100 pointer-events-none flex opacity-0 duration-500 fixed top-0 left-0 z-30 w-full bg-black/50 h-screen overflow-y-auto items-center justify-center">
+    <div autocomplete="off" id="tune-modal" data-name="first" data-role="content" data-group="tune"
+      class="modal max-h-[90vh] overflow-y-auto relative hidden [&.active]:block w-[600px] rounded-[18px] bg-gray-950 border border-slate-700 text-slate-200">
+
+      <div class="sticky top-0 bg-gray-950">
+        <button data-name="first" data-role="cancel" data-group="modal"
+          class="absolute top-1.5 left-1.5 size-6 flex text-xs justify-center items-center bg-red-600 rounded-full text-slate-200">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+            class="size-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <h2 class="text-xl 2xl:text-2xl text-center py-4">Select Tune</h2>
+      </div>
+
+      <div id="tune-list" class="p-6 divide-y-1 *:py-2"></div>
+    </div>
     <div>
 
     </div>

@@ -834,6 +834,14 @@ video {
   margin-top: 0.5rem;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-1\.5 {
+  margin-bottom: 0.375rem;
+}
+
 .block {
   display: block;
 }
@@ -884,9 +892,9 @@ video {
   height: 2rem;
 }
 
-.size-\[36px\] {
-  width: 36px;
-  height: 36px;
+.size-\[32px\] {
+  width: 32px;
+  height: 32px;
 }
 
 .h-0 {
@@ -905,8 +913,8 @@ video {
   height: 0.5rem;
 }
 
-.h-\[36px\] {
-  height: 36px;
+.h-\[32px\] {
+  height: 32px;
 }
 
 .h-full {
@@ -939,6 +947,10 @@ video {
 
 .w-\[153px\] {
   width: 153px;
+}
+
+.w-\[600px\] {
+  width: 600px;
 }
 
 .w-\[900px\] {
@@ -1113,6 +1125,16 @@ video {
   border-bottom-color: rgb(31 41 55 / var(--tw-border-opacity));
 }
 
+.border-b-slate-700 {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(51 65 85 / var(--tw-border-opacity));
+}
+
+.border-b-slate-50 {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(248 250 252 / var(--tw-border-opacity));
+}
+
 .bg-\[\#474747\] {
   --tw-bg-opacity: 1;
   background-color: rgb(71 71 71 / var(--tw-bg-opacity));
@@ -1121,6 +1143,10 @@ video {
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-black\/50 {
+  background-color: rgb(0 0 0 / 0.5);
 }
 
 .bg-black\/80 {
@@ -1152,12 +1178,39 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-transparent {
+  background-color: transparent;
+}
+
+.bg-slate-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+}
+
+.bg-slate-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-95 {
   --tw-bg-opacity: 0.95;
 }
 
 .p-4 {
   padding: 1rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.p-0 {
+  padding: 0px;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .px-4 {
@@ -1180,9 +1233,34 @@ video {
   padding-bottom: 1.5rem;
 }
 
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.px-1\.5 {
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.py-1\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
 }
 
 .pb-1 {
@@ -1264,6 +1342,16 @@ video {
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
+.text-slate-200 {
+  --tw-text-opacity: 1;
+  color: rgb(226 232 240 / var(--tw-text-opacity));
+}
+
+.text-slate-300 {
+  --tw-text-opacity: 1;
+  color: rgb(203 213 225 / var(--tw-text-opacity));
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1275,6 +1363,11 @@ video {
 
 .opacity-0 {
   opacity: 0;
+}
+
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 .invert {
@@ -1697,6 +1790,23 @@ select {
   }
 }
 
+.\*\:py-2 > * {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.last\:border-b-0:last-child {
+  border-bottom-width: 0px;
+}
+
+.group\/tune.active .group-\[\.active\]\/tune\:pointer-events-none {
+  pointer-events: none;
+}
+
+.group\/tune.rename .group-\[\.rename\]\/tune\:pointer-events-none {
+  pointer-events: none;
+}
+
 .group\/view.active .group-\[\.active\]\/view\:block {
   display: block;
 }
@@ -1705,12 +1815,28 @@ select {
   display: block;
 }
 
+.group\/tune.active .group-\[\.active\]\/tune\:block {
+  display: block;
+}
+
+.group\/tune.rename .group-\[\.rename\]\/tune\:block {
+  display: block;
+}
+
 .group.active .group-\[\.active\]\:inline-block {
   display: inline-block;
 }
 
+.group\/tune.active .group-\[\.active\]\/tune\:flex {
+  display: flex;
+}
+
 .group\/autoPlay.playing .group-\[\.playing\]\/autoPlay\:flex {
   display: flex;
+}
+
+.group\/tune.active .group-\[\.active\]\/tune\:hidden {
+  display: none;
 }
 
 .group\/view.active .group-\[\.active\]\/view\:hidden {
@@ -1726,6 +1852,10 @@ select {
 }
 
 .group.selected .group-\[\.selected\]\:hidden {
+  display: none;
+}
+
+.group\/tune.rename .group-\[\.rename\]\/tune\:hidden {
   display: none;
 }
 
@@ -1811,4 +1941,8 @@ select {
 
 .\[\&\.active\]\:h-timelineHeight.active {
   height: 250px;
+}
+
+.\[\&\.playing\]\:block.playing {
+  display: block;
 }

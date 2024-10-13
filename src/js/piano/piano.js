@@ -503,10 +503,15 @@ window.addEventListener("DOMContentLoaded", () => {
     activeSwitch?.classList.remove("active");
   }
 
-  let customizeKeyModal = document.getElementById("customize-key-modal");
+  const customizeKeyModal = document.getElementById("customize-key-modal");
+  const tuneModal = document.getElementById("tune-modal");
 
   window.addEventListener("keydown", (e) => {
-    if (!isAutoPlaying && !customizeKeyModal.classList.contains("active")) {
+    if (
+      !isAutoPlaying &&
+      !customizeKeyModal.classList.contains("active") &&
+      !tuneModal.classList.contains("active")
+    ) {
       if (activeKeys.has(e.key)) return;
       activeKeys.add(e.key);
       e.preventDefault();
@@ -866,6 +871,60 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  let tuneListHtml = ({ name, date, index }) => {
+    return `
+    <div data-index="${index}" class="group/tune tune-list-item border-b border-b-slate-700 last:border-b-0 flex items-center justify-between">
+          <div>
+            <span class="group-[.rename]/tune:hidden">
+              ${name}
+            </span>
+            <input class="tune-list-input px-1 group-[.rename]/tune:block bg-slate-900 outline-none border-b-slate-700 hidden placeholder="Rename" type="text"/>
+            <p class="text-slate-300">
+              ${date}
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="group-[.active]/tune:pointer-events-none group-[.active]/tune:hidden tune-list-play-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+              </svg>
+            </button>
+             <span class="group-[.active]/tune:flex hidden h-[32px] items-center">
+                <span class="sound-wave">
+                  <span class="wave"></span>
+                  <span class="wave"></span>
+                  <span class="wave"></span>
+                  <span class="wave"></span>
+                </span>
+              </span>
+              <button id="stop-recording-audio-btn"
+              class="tune-list-stop-btn group-[.active]/tune:flex hidden size-[32px] rounded-md items-center justify-center duration-300 bg-[#474747] shadow-1">
+              <span class="block size-3.5 bg-white"></span>
+            </button>
+            <button class="group-[.rename]/tune:hidden tune-list-rename-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+            </svg>
+            </button>
+            <button class="group-[.rename]/tune:block hidden tune-list-save-btn">
+              <svg class="size-5" fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path d="M48 96l0 320c0 8.8 7.2 16 16 16l320 0c8.8 0 16-7.2 16-16l0-245.5c0-4.2-1.7-8.3-4.7-11.3l33.9-33.9c12 12 18.7 28.3 18.7 45.3L448 416c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96C0 60.7 28.7 32 64 32l245.5 0c17 0 33.3 6.7 45.3 18.7l74.5 74.5-33.9 33.9L320.8 84.7c-.3-.3-.5-.5-.8-.8L320 184c0 13.3-10.7 24-24 24l-192 0c-13.3 0-24-10.7-24-24L80 80 64 80c-8.8 0-16 7.2-16 16zm80-16l0 80 144 0 0-80L128 80zm32 240a64 64 0 1 1 128 0 64 64 0 1 1 -128 0z"/>
+              </svg>
+            </button>
+            <button class="tune-list-delete-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-5">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+              </svg>
+            </button>
+          </div>
+        </div>
+    `;
+  };
+  const tuneList = document.getElementById("tune-list");
   const chooseMyTuneSelect = document.getElementById("choose-my-tune");
   const startRecordBtn = document.getElementById("start-record-btn");
   const stopRecordBtn = document.getElementById("stop-record-btn");
@@ -878,8 +937,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let localNotes = localStorage.getItem("notesPlayed");
 
-  buildOption(localNotes);
+  buildTuneList(localNotes);
 
+  let activeTune = null;
   let recording = false;
   let paused = false;
   let playRecorded = false;
@@ -888,6 +948,7 @@ window.addEventListener("DOMContentLoaded", () => {
   let isPlaying = false;
   let pauseStartTime = 0;
   let totalPauseDuration = 0;
+  let lastTimeout;
 
   // Start recording
   startRecordBtn.addEventListener("click", () => {
@@ -899,11 +960,10 @@ window.addEventListener("DOMContentLoaded", () => {
     startRecordBtn.classList.add("hidden");
     stopRecordBtn.classList.remove("hidden");
     pauseRecordBtn.classList.remove("hidden");
-    playRecordedAudio.classList.add("hidden");
     // downloadRecordBtn.classList.add("hidden");
-    playRecordedAudio.classList.remove("playing");
-    stopRecordingAudioBtn.classList.add("hidden");
-    clearPreviousTimeouts();
+
+    // Start recording audio
+    initTune();
   });
 
   // Stop recording
@@ -915,7 +975,6 @@ window.addEventListener("DOMContentLoaded", () => {
     pauseRecordBtn.classList.add("play");
     pauseRecordBtn.classList.remove("pause");
     playPauseFunc(pauseRecordBtn);
-    playRecordedAudio.classList.remove("hidden");
     playRecordedAudio.classList.remove("playing");
     stopRecordingAudioBtn.classList.add("hidden");
     // downloadRecordBtn.classList.remove("hidden");
@@ -926,69 +985,141 @@ window.addEventListener("DOMContentLoaded", () => {
       localNotes = JSON.parse(localNotes);
       localNotes = [
         {
-          name: `Tune ${formatDate()}`,
+          name: `Recorded ${formatDate()}`,
+          date: formatDate(),
           notes: JSON.stringify(notesPlayed),
+          index: localNotes.length,
         },
         ...localNotes,
       ];
     } else {
       localNotes = [
         {
-          name: `Tune ${formatDate()}`,
+          name: `Recorded ${formatDate()}`,
+          date: formatDate(),
           notes: JSON.stringify(notesPlayed),
+          index: 0,
         },
       ];
     }
 
-    localStorage.setItem("notesPlayed", JSON.stringify(localNotes));
-    buildOption(JSON.stringify(localNotes));
+    if(notesPlayed.length > 0) {
+      localStorage.setItem("notesPlayed", JSON.stringify(localNotes));
+      buildTuneList(JSON.stringify(localNotes));
+    }
   });
 
-  function buildOption(notes) {
+  function buildTuneList(notes) {
+    tuneList.innerHTML = `<p class="text-center text-base text-slate-300">No Tunes</p>`;
     if (notes) {
       let newNotes = JSON.parse(notes);
       if (Array.isArray(newNotes)) {
         let newOptions = newNotes.map((el, i) => {
-          return `<option value="${i}">${el.name}</option>`;
+          return `${tuneListHtml({
+            name: el.name,
+            date: el.date,
+            index: i,
+          })}`;
         });
-        chooseMyTuneSelect.innerHTML = `
-        <option>Select tune</option>
-        ${newOptions.join("")}
-        `;
+        if (newOptions.length > 0) {
+          tuneList.innerHTML = `${newOptions.join("")}`;
+        }
       }
     }
   }
 
-  chooseMyTuneSelect.addEventListener("change", (e) => {
-    let localNotes = localStorage.getItem("notesPlayed");
-    stopRecordingAudioBtn.click();
+  window.addEventListener("click", (e) => {
+    if (e.target.closest(".tune-list-play-btn")) {
+      let tuneListItem = e.target.closest(".tune-list-item");
+      if (tuneListItem) {
+        let localNotes = localStorage.getItem("notesPlayed");
 
-    if (localNotes) {
-      let newNotes = JSON.parse(localNotes);
-      if (Array.isArray(newNotes)) {
-        if (
-          +chooseMyTuneSelect.value + 1 &&
-          +chooseMyTuneSelect.value + 1 > 0 &&
-          +chooseMyTuneSelect.value < newNotes.length
-        ) {
-          notesPlayed = JSON.parse(newNotes[e.target.value].notes);
-          playRecordedAudio.classList.remove("hidden");
-          playRecorded = true;
-        } else {
-          playRecordedAudio.classList.add("hidden");
-          playRecorded = false;
-          notesPlayed = [];
+        initTune();
+
+        activeTune = tuneListItem;
+        let listIndex = tuneListItem.getAttribute("data-index");
+
+        tuneListItem.classList.add("active");
+
+        if (localNotes) {
+          let newNotes = JSON.parse(localNotes);
+          if (Array.isArray(newNotes)) {
+            if (
+              +listIndex + 1 &&
+              +listIndex + 1 > 0 &&
+              +listIndex < newNotes.length
+            ) {
+              notesPlayed = JSON.parse(newNotes[+listIndex].notes);
+              playRecorded = true;
+            } else {
+              playRecorded = false;
+              notesPlayed = [];
+            }
+
+            playRecording();
+          }
+        }
+      }
+    }
+    if (e.target.closest(".tune-list-delete-btn")) {
+      let tuneListItem = e.target.closest(".tune-list-item");
+      if (tuneListItem) {
+        if (tuneListItem.classList.contains("active")) {
+          initTune();
+        }
+        let localNotes = localStorage.getItem("notesPlayed");
+        if (localNotes) {
+          let newNotes = JSON.parse(localNotes);
+          if (Array.isArray(newNotes)) {
+            newNotes.splice(tuneListItem.getAttribute("data-index"), 1);
+            localStorage.setItem("notesPlayed", JSON.stringify(newNotes));
+            buildTuneList(JSON.stringify(newNotes));
+          }
+        }
+      }
+    }
+    if (e.target.closest(".tune-list-stop-btn")) {
+      initTune();
+    }
+    if (e.target.closest(".tune-list-rename-btn")) {
+      let tuneListItem = e.target.closest(".tune-list-item");
+      if (tuneListItem) {
+        tuneListItem.classList.add("rename");
+        let tuneInput = tuneListItem.querySelector(".tune-list-input");
+        tuneInput.focus();
+      }
+    }
+
+    if(e.target.closest(".tune-list-save-btn")) {
+      let tuneListItem = e.target.closest(".tune-list-item");
+      if(tuneListItem) {
+        let localNotes = localStorage.getItem("notesPlayed");
+        if(localNotes) {
+          let newNotes = JSON.parse(localNotes);
+          if(Array.isArray(newNotes)) {
+            newNotes[tuneListItem.getAttribute("data-index")].name = tuneListItem.querySelector(".tune-list-input").value;
+            localStorage.setItem("notesPlayed", JSON.stringify(newNotes));
+            buildTuneList(JSON.stringify(newNotes));
+          }
         }
       }
     }
   });
 
   stopRecordingAudioBtn.addEventListener("click", () => {
+    initTune();
+  });
+
+  function initTune() {
     playRecordedAudio.classList.remove("playing");
     stopRecordingAudioBtn.classList.add("hidden");
     isPlaying = false;
+
+    activeTune?.classList.remove("active");
+    activeTune = null;
+
     clearPreviousTimeouts();
-  });
+  }
 
   // Pause and resume recording
   pauseRecordBtn.addEventListener("click", () => {
@@ -1020,6 +1151,8 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   function clearPreviousTimeouts() {
+    clearTimeout(lastTimeout);
+    lastTimeout = null;
     if (playbackTimeouts.length > 0) {
       playbackTimeouts.forEach((timeout) => clearTimeout(timeout));
       playbackTimeouts = [];
@@ -1067,13 +1200,18 @@ window.addEventListener("DOMContentLoaded", () => {
         playbackTimeouts.push(noteOffTimeout);
 
         if (i === notesPlayed.length - 1) {
-          setTimeout(() => {
+          lastTimeout = setTimeout(() => {
             let lastNote = document.getElementById(
               notesPlayed[notesPlayed.length - 1]?.note
             );
             triggerNoteOff(lastNote);
             playRecordedAudio.classList.remove("playing");
             stopRecordingAudioBtn.classList.add("hidden");
+            activeTune?.classList.remove("active");
+            console.log("aeg");
+
+            activeTune = null;
+            isPlaying = false;
           }, 1000);
         }
       }, delay);
@@ -1097,7 +1235,4 @@ window.addEventListener("DOMContentLoaded", () => {
   //   URL.revokeObjectURL(url);
   // });
   // Attach event listener for playback button
-  playRecordedAudio.addEventListener("click", () => {
-    playRecording();
-  });
 });
