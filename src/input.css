@@ -5,39 +5,40 @@
 @layer components {
   .font-34 {
     @apply text-lg xl:text-2xl 2xl:text-3xl;
-}
+  }
 
-.font-24 {
+  .font-24 {
     @apply text-base xl:text-xl 2xl:text-2xl;
-}
+  }
 
-.font-20 {
+  .font-20 {
     @apply text-sm xl:text-lg 2xl:text-xl;
-}
+  }
 
-.font-19 {
+  .font-19 {
     @apply text-sm xl:text-base 2xl:text-xl;
-}
+  }
 
-.font-18 {
+  .font-18 {
     @apply text-[13px] xl:text-sm 2xl:text-lg;
-}
+  }
 
-.font-16 {
+  .font-16 {
     @apply text-[11px] xl:text-[13px] 2xl:text-base;
-}
+  }
 
-.font-14 {
+  .font-14 {
     @apply text-[10px] xl:text-[11px] 2xl:text-sm;
-}
+  }
 
-.font-12 {
+  .font-12 {
     @apply text-[9px] xl:text-[10px] 2xl:text-xs;
-}
+  }
 
   .key-input {
     @apply h-9 2xl:h-11 w-full text-white block bg-transparent border border-gray-800 outline-none text-center;
   }
+
   .key-label {
     @apply block font-14 text-white/70 capitalize;
   }
@@ -49,22 +50,75 @@
   .key-btn-primary {
     @apply key-btn bg-gray-700;
   }
+
   .key-btn-danger {
     @apply key-btn bg-red-600;
   }
 
   .piano-btn {
-    @apply text-center px-4 py-1.5 capitalize rounded-md bg-[#474747] font-16 text-gray-200 duration-300 shadow-1;
+    @apply text-center capitalize font-16 px-2;
   }
 
   .piano-input {
     @apply px-4 py-1.5 capitalize rounded-md bg-[#474747] font-16 text-gray-200 duration-300 shadow-1;
+  }
+
+  .piano-btn:not(.hidden) {
+    height: 26px;
+    background: linear-gradient(180deg,
+        rgba(60, 60, 60, 1) 0%,
+        rgba(45, 45, 45, 1) 48%,
+        rgba(40, 40, 40, 1) 50%,
+        rgba(35, 35, 35, 1) 100%);
+    border: 1px solid #000;
+    border-radius: 2px;
+    color: #999;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.15),
+      0 1px 1px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .piano-btn::after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    right: 1px;
+    height: 40%;
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 1px;
+  }
+  
+  .piano-btn:hover {
+    background: linear-gradient(180deg,
+        rgba(65, 65, 65, 1) 0%,
+        rgba(50, 50, 50, 1) 48%,
+        rgba(45, 45, 45, 1) 50%,
+        rgba(40, 40, 40, 1) 100%);
+  }
+  
+  .transport-controls {
+    display: flex;
+    gap: 3px;
+    padding: 2px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 2px;
+    margin: 0 4px;
   }
 }
 
 select {
   @apply outline-none;
 }
+
 .piano {
   position: relative;
 }
@@ -85,12 +139,13 @@ select {
 .customScroll-none::-webkit-scrollbar {
   width: 0px;
 }
+
 .customScroll-none::-moz-scrollbar {
   width: 0px;
 }
 
 .configuire-board {
-  background: rgb(63, 63, 63);
+  background: rgb(48, 48, 48);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.767) inset;
 }
 
@@ -99,7 +154,9 @@ select {
 }
 
 .note {
-  @apply bg-white h-full flex-1 relative; 
+  @apply bg-white rounded-b h-full flex-1 relative;
+  box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 
 #auto-play-timeline {
@@ -109,24 +166,109 @@ select {
   transition: height 300ms linear;
 }
 
-#auto-play-timeline-inner .time-line{
+#auto-play-timeline-inner .time-line {
   @apply flex-1 h-timelineHeight;
   position: relative
 }
 
-#auto-play-timeline-inner .time-line div{
+#auto-play-timeline-inner .time-line div {
   @apply h-full w-full
 }
 
-.semi-note-left,
-.semi-note-right,
-.semi-note-middle {
-  @apply absolute text-white rounded-b-[6px] top-0 right-0 w-[70%] h-[68%] bg-gray-900 border-t-0 border-2 border-gray-950;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), inset 0 -4px 8px rgba(0, 0, 0, 0.6),
-    inset 0 4px 8px rgba(255, 255, 255, 0.2);
+.semi-note {
+  @apply absolute text-white rounded-b-[6px] top-0 right-0 w-[70%] h-[68%];
+  box-shadow:
+    -1px 0 2px rgba(255, 255, 255, 0.1),
+    1px 0 2px rgba(0, 0, 0, 0.8),
+    0 8px 0 #000,
+    0 9px 0 #000,
+    0 10px 8px rgba(0, 0, 0, 0.7);
+  background: linear-gradient(145deg, #000000, #1a1a1a);
+  border: 1px solid #000;
+  border-radius: 0 0 4px 4px;
+
 }
 
-#auto-play-timeline-inner .time-line .timeline-inner > div{
+
+.semi-note.active {
+  box-shadow:
+    -1px 0 2px rgba(255, 255, 255, 0.1),
+    1px 0 2px rgba(0, 0, 0, 0.8),
+    0 2px 0 #000,
+    0 3px 0 #000,
+    0 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+.semi-note-left.active {
+  transform: translate(25%, 6px);
+}
+
+.semi-note-right.active {
+  transform: translate(75%, 6px);
+}
+
+.semi-note-middle.active {
+  transform: translate(50%, 6px)
+}
+
+
+.semi-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 95%;
+  background: linear-gradient(to bottom,
+      rgba(40, 40, 40, 0.8) 0%,
+      rgba(0, 0, 0, 0.3) 100%);
+  border-radius: 0 0 3px 3px;
+}
+
+.semi-note::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 5%,
+      transparent 20%,
+      transparent 80%,
+      rgba(255, 255, 255, 0.05) 95%,
+      rgba(255, 255, 255, 0.1) 100%);
+  border-radius: 0 0 4px 4px;
+}
+
+.key-edge-left,
+.key-edge-right {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: #111;
+  top: 0;
+}
+
+.key-edge-left {
+  left: 0;
+  background: linear-gradient(to right, #000, #222);
+}
+
+.key-edge-right {
+  right: 0;
+  background: linear-gradient(to left, #000, #222);
+}
+
+.semi-note:active::before {
+  background: linear-gradient(to bottom,
+      rgba(30, 30, 30, 0.8) 0%,
+      rgba(0, 0, 0, 0.3) 100%);
+}
+
+#auto-play-timeline-inner .time-line .timeline-inner>div {
   @apply bg-teal-400;
   position: absolute;
   width: 100%;
@@ -135,7 +277,7 @@ select {
   /* box-shadow: 0 0 20px rgb(45 212 191); */
 }
 
-#auto-play-timeline-inner .time-line .timeline-inner > div::after{
+#auto-play-timeline-inner .time-line .timeline-inner>div::after {
   position: absolute;
   content: '';
   top: 0%;
@@ -146,14 +288,14 @@ select {
   z-index: 1;
 }
 
-#auto-play-timeline-inner .time-line .timeline-inner-sharp > div{
+#auto-play-timeline-inner .time-line .timeline-inner-sharp>div {
   @apply bg-secondary;
   position: absolute;
   width: 100%;
   border-radius: 5px;
 }
 
-#auto-play-timeline-inner .time-line .timeline-inner-sharp > div::after{
+#auto-play-timeline-inner .time-line .timeline-inner-sharp>div::after {
   position: absolute;
   content: '';
   top: 0%;
@@ -164,63 +306,74 @@ select {
   z-index: 1;
 }
 
-#auto-play-timeline-inner .time-line .timeline-inner-sharp{
+#auto-play-timeline-inner .time-line .timeline-inner-sharp {
   @apply absolute top-0 right-0 h-full;
   width: 62%;
 }
 
-#auto-play-timeline-inner{
+#auto-play-timeline-inner {
   @apply flex justify-between gap-0.5 items-end absolute bottom-0 left-0 right-0;
   min-height: 100%;
 }
 
-.semi-note-left, .timeline-inner-sharp-left {
-  @apply translate-x-[25%];
+.semi-note-left,
+.timeline-inner-sharp-left {
+  transform: translateX(25%)
 }
 
-.semi-note-right, .timeline-inner-sharp-right {
-  @apply translate-x-[75%];
+.semi-note-right,
+.timeline-inner-sharp-right {
+  transform: translateX(75%)
 }
 
-.semi-note-middle, .timeline-inner-sharp-middle {
-  @apply translate-x-[50%];
+.semi-note-middle,
+.timeline-inner-sharp-middle {
+  transform: translateX(50%)
 }
 
 .cord {
   @apply h-full flex-1 flex gap-0.5 duration-300;
 }
-.cord > .note:nth-child(1), #auto-play-timeline .time-line:nth-child(1) {
+
+.cord>.note:nth-child(1),
+#auto-play-timeline .time-line:nth-child(1) {
   z-index: 7;
 }
-.cord > .note:nth-child(2), #auto-play-timeline .time-line:nth-child(2) {
+
+.cord>.note:nth-child(2),
+#auto-play-timeline .time-line:nth-child(2) {
   z-index: 6;
 }
-.cord > .note:nth-child(3), #auto-play-timeline .time-line:nth-child(3) {
+
+.cord>.note:nth-child(3),
+#auto-play-timeline .time-line:nth-child(3) {
   z-index: 5;
 }
-.cord > .note:nth-child(4), #auto-play-timeline .time-line:nth-child(4) {
+
+.cord>.note:nth-child(4),
+#auto-play-timeline .time-line:nth-child(4) {
   z-index: 4;
 }
-.cord > .note:nth-child(5), #auto-play-timeline .time-line:nth-child(5) {
+
+.cord>.note:nth-child(5),
+#auto-play-timeline .time-line:nth-child(5) {
   z-index: 3;
 }
-.cord > .note:nth-child(6), #auto-play-timeline .time-line:nth-child(6) {
+
+.cord>.note:nth-child(6),
+#auto-play-timeline .time-line:nth-child(6) {
   z-index: 2;
 }
-.cord > .note:nth-child(7), #auto-play-timeline .time-line:nth-child(7) {
+
+.cord>.note:nth-child(7),
+#auto-play-timeline .time-line:nth-child(7) {
   z-index: 1;
 }
 
-.semi-note-left.active,
-.semi-note-right.active,
-.semi-note-middle.active {
-  @apply bg-secondary;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 -2px 4px rgba(0, 0, 0, 0.6),
-    inset 0 2px 4px rgba(255, 255, 255, 0.2) !important;
-}
 
 .note.active {
   @apply bg-primary;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.932);
 }
 
 /* #allCord.auto-play-active .note.active::after{
@@ -239,7 +392,7 @@ select {
 }
 
 .scale-change-header-child {
-  @apply relative rounded-md bg-[#474747] text-sm text-gray-200 duration-300 size-[30px]  shadow-1 flex items-center justify-center;
+  @apply relative rounded-md bg-[#474747] text-sm text-gray-200 duration-300 size-[30px] shadow-1 flex items-center justify-center;
 }
 
 .scale-change-header {
@@ -299,10 +452,12 @@ select {
     transform: scaleY(1);
     opacity: 0.5;
   }
+
   50% {
     transform: scaleY(2.5);
     opacity: 1;
   }
+
   100% {
     transform: scaleY(1);
     opacity: 0.5;
@@ -337,7 +492,7 @@ select {
   cursor: pointer;
 }
 
-.octave-line{
+.octave-line {
   /* background: rgba(128, 128, 128, 0.288); */
   position: absolute;
   top: 0;
@@ -364,3 +519,4 @@ select {
 input::selection {
   @apply bg-primary text-white;
 }
+

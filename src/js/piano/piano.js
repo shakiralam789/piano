@@ -117,13 +117,17 @@ window.addEventListener("DOMContentLoaded", () => {
       //   c#
       let semiNote1 = document.createElement("div");
       semiNote1.id = `c${i + 1}_${note2}`;
-      semiNote1.className = `switch semi-note-left c${i + 1}_${note2}`;
+      semiNote1.className = `switch semi-note semi-note-left c${
+        i + 1
+      }_${note2}`;
       semiNote1.setAttribute("data-key", data["cord_" + (i + 1)][1][note2].key);
       semiNote1.innerHTML = `<span class="notes-name">${note2.replace(
         "_sharp",
         "#"
       )}</span>
       <span class="keys-name">${data["cord_" + (i + 1)][1][note2].key}</span>
+      <div class="key-edge-left"></div>
+            <div class="key-edge-right"></div>
       `;
 
       semiNote1.onpointerdown = (e) =>
@@ -162,13 +166,17 @@ window.addEventListener("DOMContentLoaded", () => {
       //   d#
       let semiNote2 = document.createElement("div");
       semiNote2.id = `c${i + 1}_${note4}`;
-      semiNote2.className = `switch semi-note-right c${i + 1}_${note4}`;
+      semiNote2.className = `switch semi-note semi-note-right c${
+        i + 1
+      }_${note4}`;
       semiNote2.setAttribute("data-key", data["cord_" + (i + 1)][3][note4].key);
       semiNote2.innerHTML = `<span class="notes-name">${note4.replace(
         "_sharp",
         "#"
       )}</span>
       <span class="keys-name">${data["cord_" + (i + 1)][3][note4].key}</span>
+      <div class="key-edge-left"></div>
+            <div class="key-edge-right"></div>
       `;
 
       semiNote2.onpointerdown = (e) =>
@@ -234,13 +242,17 @@ window.addEventListener("DOMContentLoaded", () => {
       // f#
       let semiNote3 = document.createElement("div");
       semiNote3.id = `c${i + 1}_${note7}`;
-      semiNote3.className = `switch semi-note-left c${i + 1}_${note7}`;
+      semiNote3.className = `switch semi-note semi-note-left c${
+        i + 1
+      }_${note7}`;
       semiNote3.setAttribute("data-key", data["cord_" + (i + 1)][6][note7].key);
       semiNote3.innerHTML = `<span class="notes-name">${note7.replace(
         "_sharp",
         "#"
       )}</span>
       <span class="keys-name">${data["cord_" + (i + 1)][6][note7].key}</span>
+      <div class="key-edge-left"></div>
+            <div class="key-edge-right"></div>
       `;
 
       semiNote3.onpointerdown = (e) =>
@@ -280,13 +292,17 @@ window.addEventListener("DOMContentLoaded", () => {
       //   g#
       let semiNote4 = document.createElement("div");
       semiNote4.id = `c${i + 1}_${note9}`;
-      semiNote4.className = `switch semi-note-middle c${i + 1}_${note9}`;
+      semiNote4.className = `switch semi-note semi-note-middle c${
+        i + 1
+      }_${note9}`;
       semiNote4.setAttribute("data-key", data["cord_" + (i + 1)][8][note9].key);
       semiNote4.innerHTML = `<span class="notes-name">${note9.replace(
         "_sharp",
         "#"
       )}</span>
       <span class="keys-name">${data["cord_" + (i + 1)][8][note9].key}</span>
+      <div class="key-edge-left"></div>
+            <div class="key-edge-right"></div>
       `;
 
       semiNote4.onpointerdown = (e) =>
@@ -327,7 +343,9 @@ window.addEventListener("DOMContentLoaded", () => {
       //   sa
       let semiNote5 = document.createElement("div");
       semiNote5.id = `c${i + 1}_${note11}`;
-      semiNote5.className = `switch semi-note-right c${i + 1}_${note11}`;
+      semiNote5.className = `switch semi-note semi-note-right c${
+        i + 1
+      }_${note11}`;
       semiNote5.setAttribute(
         "data-key",
         data["cord_" + (i + 1)][10][note11].key
@@ -337,6 +355,8 @@ window.addEventListener("DOMContentLoaded", () => {
         "#"
       )}</span>
       <span class="keys-name">${data["cord_" + (i + 1)][10][note11].key}</span>
+      <div class="key-edge-left"></div>
+            <div class="key-edge-right"></div>
       `;
 
       semiNote5.onpointerdown = (e) =>
