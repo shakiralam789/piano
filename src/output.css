@@ -758,7 +758,7 @@ video {
   padding: 2px;
   background: rgba(0, 0, 0, 0.4);
   border-radius: 2px;
-  margin: 0 4px;
+  /* margin: 0 4px; */
 }
 
 .pointer-events-none {
@@ -991,10 +991,6 @@ video {
 
 .w-px {
   width: 1px;
-}
-
-.w-\[32px\] {
-  width: 32px;
 }
 
 .rotate-45 {
@@ -1485,11 +1481,11 @@ select {
   color: rgb(255 255 255 / var(--tw-text-opacity));
   box-shadow:
     -1px 0 2px rgba(255, 255, 255, 0.1),
-    1px 0 2px rgba(0, 0, 0, 0.8),
+    0px 0 2px rgba(0, 0, 0, 0.8),
     0 8px 0 #000,
     0 9px 0 #000,
     0 10px 8px rgba(0, 0, 0, 0.7);
-  background: linear-gradient(145deg, #000000, #1a1a1a);
+  background: linear-gradient(145deg, #000000, #363636);
   border: 1px solid #000;
   border-radius: 0 0 4px 4px;
 }
@@ -1497,7 +1493,7 @@ select {
 .semi-note.active {
   box-shadow:
     -1px 0 2px rgba(255, 255, 255, 0.1),
-    1px 0 2px rgba(0, 0, 0, 0.8),
+    0px 0 2px rgba(0, 0, 0, 0.8),
     0 2px 0 #000,
     0 3px 0 #000,
     0 4px 8px rgba(0, 0, 0, 0.7);

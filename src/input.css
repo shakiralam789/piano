@@ -115,7 +115,7 @@
     padding: 2px;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 2px;
-    margin: 0 4px;
+    /* margin: 0 4px; */
   }
 }
 
@@ -183,21 +183,20 @@ select {
   @apply absolute text-white rounded-b-[6px] top-0 right-0 w-[70%] h-[68%];
   box-shadow:
     -1px 0 2px rgba(255, 255, 255, 0.1),
-    1px 0 2px rgba(0, 0, 0, 0.8),
+    0px 0 2px rgba(0, 0, 0, 0.8),
     0 8px 0 #000,
     0 9px 0 #000,
     0 10px 8px rgba(0, 0, 0, 0.7);
-  background: linear-gradient(145deg, #000000, #1a1a1a);
+  background: linear-gradient(145deg, #000000, #363636);
   border: 1px solid #000;
   border-radius: 0 0 4px 4px;
-
 }
 
 
 .semi-note.active {
   box-shadow:
     -1px 0 2px rgba(255, 255, 255, 0.1),
-    1px 0 2px rgba(0, 0, 0, 0.8),
+    0px 0 2px rgba(0, 0, 0, 0.8),
     0 2px 0 #000,
     0 3px 0 #000,
     0 4px 8px rgba(0, 0, 0, 0.7);
