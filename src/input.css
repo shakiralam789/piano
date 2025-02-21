@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+#page_loader{
+  z-index: 999;
+}
+
 @layer components {
   .font-34 {
     @apply text-lg xl:text-2xl 2xl:text-3xl;
@@ -63,8 +67,9 @@
     @apply px-4 py-1.5 capitalize rounded-md bg-[#474747] font-16 text-gray-200 duration-300 shadow-1;
   }
 
-  .piano-btn:not(.hidden) {
-    height: 26px;
+  .piano-btn {
+    @apply flex;
+    height: 32px;
     background: linear-gradient(180deg,
         rgba(60, 60, 60, 1) 0%,
         rgba(45, 45, 45, 1) 48%,
@@ -74,7 +79,6 @@
     border-radius: 2px;
     color: #999;
     font-size: 12px;
-    display: flex;
     align-items: center;
     justify-content: center;
     box-shadow:
@@ -83,7 +87,7 @@
     cursor: pointer;
     position: relative;
   }
-  
+
   .piano-btn::after {
     content: '';
     position: absolute;
@@ -96,7 +100,7 @@
         rgba(255, 255, 255, 0.05) 100%);
     border-radius: 1px;
   }
-  
+
   .piano-btn:hover {
     background: linear-gradient(180deg,
         rgba(65, 65, 65, 1) 0%,
@@ -104,12 +108,12 @@
         rgba(45, 45, 45, 1) 50%,
         rgba(40, 40, 40, 1) 100%);
   }
-  
+
   .transport-controls {
     display: flex;
     gap: 3px;
     padding: 2px;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
     border-radius: 2px;
     margin: 0 4px;
   }
@@ -464,16 +468,24 @@ select {
   }
 }
 
+.range-div {
+  @apply rounded-full w-[140px];
+  height: 28px;
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.26) inset;
+}
+
 .slider {
-  @apply rounded-full;
+  @apply rounded-full w-full;
   -webkit-appearance: none;
-  width: 70%;
-  height: 10px;
-  background: #5f5f5f;
+  height: 28px;
+  background: transparent;
   outline: none;
   opacity: 0.7;
   -webkit-transition: 0.2s;
   transition: opacity 0.2s;
+  cursor: pointer;
 }
 
 .slider:hover {
@@ -481,14 +493,14 @@ select {
 }
 
 .slider::-webkit-slider-thumb {
-  @apply bg-teal-400 size-[16px] rounded-full;
+  @apply bg-gray-700 size-[22px] rounded-full;
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  @apply bg-teal-400 size-[16px] rounded-full;
+  @apply bg-gray-700 size-[22px] rounded-full;
   cursor: pointer;
 }
 
@@ -520,3 +532,61 @@ input::selection {
   @apply bg-primary text-white;
 }
 
+
+.custom-select {
+  position: relative;
+}
+
+.custom-select select {
+  display: none;
+}
+
+.custom-select .select-selected {
+  @apply piano-btn pr-10;
+}
+
+.custom-select .select-items {
+  z-index: 40;
+  min-width: calc(100% + 2px);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.87);
+  position: absolute;
+  left: 0;
+  margin-top: 4px;
+}
+
+.custom-select .select-items li {
+  @apply font-14;
+  background: rgba(40, 40, 40, 1);
+  color: #999;
+  padding: 6px 10px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+.custom-select .select-items li:hover, .custom-select .select-items li.active {
+  background: rgb(63, 63, 63);
+}
+
+.custom-select.left .select-items {
+  left: 0;
+  right: auto;
+}
+
+.custom-select .select-hide {
+  display: none;
+}
+
+.custom-select .drop-down-icon {
+  width: 14px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+  pointer-events: none;
+  z-index: 99;
+  color: gray;
+}

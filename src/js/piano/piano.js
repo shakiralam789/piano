@@ -691,7 +691,6 @@ window.addEventListener("DOMContentLoaded", () => {
           let timelineDiv = document.querySelector(`.time-line-${el.octave}`);
 
           let timelineInner = document.createElement("div");
-          // timelineInner.style.backgroundColor = randomColor;
 
           timelineDiv.append(timelineInner);
           timeLineInnerPush.push(timelineInner);
@@ -864,10 +863,15 @@ window.addEventListener("DOMContentLoaded", () => {
         (baseSpeedValue * (+controlSpeed.max / 2)) / baseSpeed
       );
     }
+
+    dropDownFun(document.getElementById("select-cord"));
   });
 
-  selectCord.addEventListener("change", (e) => {
-    baseCord = +e.target.value;
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".select-items") && e.target.closest("#select-cord")) {
+      let select = e.target.closest("#select-cord").querySelector("select");
+      baseCord = +select.value;
+    }
   });
 
   controlSpeed.addEventListener("change", () => {
