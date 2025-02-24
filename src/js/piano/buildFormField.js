@@ -3,7 +3,7 @@ let formField = document.querySelector("#form-field");
 let formFieldTemp = (title, index) => {
   return `
         <div>
-          <h3 class="text-gray-300 text-sm border-b border-b-gray-800 pb-3 2xl:text-base mb-4">${Object.keys(title)[0].replace('_',' ')}</h3>
+          <h3 class="font-medium text-gray-300 text-sm border-b border-b-gray-500 pb-3 2xl:text-base mb-4">${Object.keys(title)[0].replace('_',' ')}</h3>
             <div class="cord-field grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-x-1.5 gap-y-4">
                ${notes
                  .map(

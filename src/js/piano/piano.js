@@ -897,7 +897,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let tuneListHtml = ({ name, date, index }) => {
     return `
-    <div data-index="${index}" class="group/tune tune-list-item border-b border-b-slate-700 last:border-b-0 flex items-center justify-between">
+    <div data-index="${index}" class="group/tune tune-list-item border-b border-b-gray-500 last:border-b-0 flex items-center justify-between">
           <div>
             <span class="tune-list-name group-[.rename]/tune:hidden">
               ${name}

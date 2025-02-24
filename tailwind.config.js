@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         'primary': '#0d9488',
         'secondary': '#F31559',
+        'body-color': "rgb(48, 48, 48)",
       },
       height: {
         'timelineHeight': '250px',
